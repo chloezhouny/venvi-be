@@ -21,18 +21,10 @@ module.exports = function(sequelize, DataTypes) {
         len: [4]
       }
     },
-
-     price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-
+    
      image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         len: [1]
       }
@@ -44,8 +36,7 @@ module.exports = function(sequelize, DataTypes) {
 });
 
    Vehicle.associate = function(models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
+
     Vehicle.hasMany(models.Review, {
       onDelete: "cascade"
     });

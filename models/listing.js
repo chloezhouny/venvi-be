@@ -3,14 +3,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Listing = sequelize.define("Listing", {
 
-   sellerId:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-
   price:{
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -21,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
 
      image:{
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         len: [1],
       }

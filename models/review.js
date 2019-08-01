@@ -3,22 +3,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Review = sequelize.define("Review", {
 
-   userId:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-
-   vehicleId:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-
       ratingNumber:{
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -44,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
 
 
   Review.associate = function (models) {
-    Routine.belongsTo(models.User, {
+    Review.belongsTo(models.Vehicle, {
       foreignKey: {
         allowNull: false
       }
