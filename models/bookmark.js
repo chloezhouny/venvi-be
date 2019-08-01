@@ -2,13 +2,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Bookmark = sequelize.define("Bookmark", {
 
-     userId:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
 
    sellerId:{
       type: DataTypes.INTEGER,
@@ -28,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
 
      image:{
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         len: [1],
       }
@@ -49,5 +42,5 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  return Listing;
+  return Bookmark;
 };

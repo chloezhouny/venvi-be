@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     },
       email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         len: [1]
       }
@@ -38,9 +38,14 @@ module.exports = function(sequelize, DataTypes) {
    User.associate = function(models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
-    User.hasMany(models.Review, {
+    User.hasMany(models.Listing, {
       onDelete: "cascade"
     });
+
+     User.hasMany(models.Bookmark, {
+      onDelete: "cascade"
+    });
+
   };
 
   return User;
