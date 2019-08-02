@@ -12,7 +12,7 @@ module.exports = function(passport) {
   //Deserializing the user
   passport.deserializeUser(function(id, done) {
     console.log("DESERIALIZEd USER ID: ", id);
-    db.User.findOne({ where: {id: id}}).then((user) => {
+    db.User.findOne({ where: {id: id}}).then((user, err) => {
       console.log("DESERIALIZEd USER: ", user);
       
       console.log("Function DONE: ", done);
@@ -29,7 +29,7 @@ module.exports = function(passport) {
     process.nextTick(function() {
       console.log("USER's PROFILE ID", profile.id);
       
-      db.User.findOne({ where: {profileID: profile.id}}).then((err, user) => {
+      db.User.findOne({ where: {profileID: profile.id}}).then((user, err) => {
         if (err) return done(err);
         
         if (user) return done(null, user)
