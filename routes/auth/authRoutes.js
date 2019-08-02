@@ -12,7 +12,7 @@
   })
 
   router.route("/").get(
-    passport.authenticate('google', { scope: ['email', 'profile'] })
+    passport.authenticate('google', { scope: ["profile", "email"] })
   )
 
   router.route("/callback").get(passport.authenticate('google', { successRedirect: '/success', failureRedirect: '/', failureFlash: 'Invalid login' }))
