@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     profileID: {
-      type: DataTypes.String,
+      type: DataTypes.STRING,
       allowNull: false
     }
   },
