@@ -15,10 +15,10 @@
     passport.authenticate('google', { scope: ["profile", "email"] })
   )
 
-  router.route("/callback").get(passport.authenticate('google', { failureRedirect: '/', failureFlash: 'Invalid login' }), function(req, res) {
-    // res.redirect("/auth/google/profile");
-    res.redirect("/auth/google/success");
-  })
+  // router.route("/callback").get(passport.authenticate('google', {failureRedirect: '/', failureFlash: 'Invalid login' }), function(req, res) {
+  //   res.redirect("/auth/google/success")
+  // })
+  router.route("/callback").get(passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/', failureFlash: 'Invalid login' }))
     
   //   passport.authenticate('google', { 
   //     successRedirect: '/auth/google/profile', 

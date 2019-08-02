@@ -12,7 +12,7 @@ module.exports = function(passport) {
   //Deserializing the user
   passport.deserializeUser(function(id, done) {
     console.log("DESERIALIZEd USER ID: ", id);
-    db.User.findOne({ where: {id: id}}).then((err, user) => {
+    db.User.findOne({ where: {id: id}}).then((user) => {
       console.log("DESERIALIZEd USER: ", user);
       
       console.log("Function DONE: ", done);
