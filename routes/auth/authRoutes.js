@@ -15,7 +15,7 @@
     passport.authenticate('google', { scope: ["profile", "email"] })
   )
 
-  router.route("/callback").get(passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/', failureFlash: 'Invalid login' }))
+  router.route("/callback").get(passport.authenticate('google', { successRedirect: '/auth/google/profile', failureRedirect: '/', failureFlash: 'Invalid login' }))
     
   //   passport.authenticate('google', { 
   //     successRedirect: '/auth/google/profile', 
