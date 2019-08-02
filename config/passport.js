@@ -11,7 +11,7 @@ module.exports = function(passport) {
 
   //Deserializing the user
   passport.deserializeUser(function(id, done) {
-    db.User.findByID(id, function(err, user) {
+    db.User.findOne({ where: {id: id}}, function(err, user) {
       done(err, user);
     })
   })
@@ -35,7 +35,7 @@ module.exports = function(passport) {
             name: "NewName",
             username: "NewUsername",
             password: "NoPassword",
-            email: "testEmail",
+            email: "sr@gmail.com",
             profileID: profile.id
           }).then((newUser) => {
             if (!newUser) return done(null, false)
