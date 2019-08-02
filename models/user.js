@@ -26,12 +26,12 @@ module.exports = function (sequelize, DataTypes) {
       // allowNull: false,
       validate: {
         len: [1],
-        isEmail: true
+        // isEmail: true
       },
       allowNull: false
     },
     profileID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.String,
       allowNull: false
     }
   },
