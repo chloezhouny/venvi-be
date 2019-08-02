@@ -29,7 +29,8 @@ module.exports = {
 		// res.render('profile.ejs', {
 		// 	user : req.user // get the user out of session and pass to template
 		// });
-
+		console.log("PROFILE ROUTE: ", req.user);
+		
 		res.json(req.user);
 
 	},
@@ -37,6 +38,12 @@ module.exports = {
 	logout: function(req, res) {
 		req.logout();
 		res.redirect("/");
+	},
+
+	redirectSuccess: function(req, res) {
+
+		console.log("SUCCESS ROUTE: ", req.user);
+		res.redirect("/")
 	}
 	
 }

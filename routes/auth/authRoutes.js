@@ -1,20 +1,35 @@
-module.exports = function(passport) {
+  var passport = require("passport");
   const router = require("express").Router();
   const authController = require("../../controller/user-controller");
 
-  //   "/auth/google/"
+  // router.route("/").get(function(req, res) {
+  //   let passport = req.app.get('passport')
+  //   passport.authenticate('google', { scope: ['email', 'profile'] });
+  // })
+  router.route("/login").get( (req, res) => {
+    passport = req.app.get('passport')
+    res.redirect("/auth/google")
+  })
+
+  router.route("/").get(
+    passport.authenticate('google', { scope: ['email', 'profile'] })
+  )
+
+  router.route("/callback").get(passport.authenticate('google', { successRedirect: '/success', failureRedirect: '/', failureFlash: 'Invalid login' }))
+    
+  //   passport.authenticate('google', { 
+  //     successRedirect: '/auth/google/profile', 
+  //     failureRedirect: '/auth/google/profile', 
+  //     failureFlash: 'Invalid login' 
+  //   })
+
+  // )
+
   router.route("/profile").get(isLoggedIn, authController.profile);
+
   router.route("/logout").get(authController.logout);
-  router.route("/callback").get(authController.callback);
+
   router.route("/success").get(authController.redirectSuccess);
-
-  router.route("/").get(function(req, res) {
-    passport.authenticate('google', { scope: ['email', 'profile'] });
-  })
-
-  router.route("/callback").get(function(req, res) {
-    passport.authenticate('google', { successRedirect: '/profile', failureRedirect: '/', failureFlash: 'Invalid login' })
-  })
 
   function isLoggedIn(req, res, next) {
 
@@ -23,7 +38,7 @@ module.exports = function(passport) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.redirect('/loggedIn');
   }
 
-}
+  module.exports = router;
