@@ -20,7 +20,7 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://venvi-passport.herokuapp.com/'); // eventually change to heroku url - may need to be localhost:3000
+  res.header('Access-Control-Allow-Origin', 'https://venvi-passport2.herokuapp.com/'); // eventually change to heroku url - may need to be localhost:3000
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
