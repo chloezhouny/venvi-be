@@ -16,8 +16,8 @@
   )
 
   router.route("/callback").get(passport.authenticate('google', { failureRedirect: '/', failureFlash: 'Invalid login' }), function(req, res) {
-    res.redirect("/auth/google/profile");
-    // res.redirect("/auth/google/success");
+    // res.redirect("/auth/google/profile");
+    res.redirect("/auth/google/success");
   })
     
   //   passport.authenticate('google', { 
