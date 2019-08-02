@@ -11,10 +11,11 @@ module.exports = function(passport) {
 
   //Deserializing the user
   passport.deserializeUser(function(id, done) {
-    db.User.findOne({ where: {id: id}}, function(err, user) {
+    console.log("DESERIALIZEd USER ID: ", id);
+    db.User.findOne({ where: {id: id}}).then((err, user) => {
       console.log("DESERIALIZEd USER: ", user);
-      console.log("Function DONE: ", done);
       
+      console.log("Function DONE: ", done);
       done(err, user);
     })
   })
@@ -41,7 +42,11 @@ module.exports = function(passport) {
             email: "sr@gmail.com",
             profileID: profile.id
           }).then((newUser) => {
-            if (!newUser) return done(null, false)
+            if (!newUser) {
+              console.log("RETURNING NULL USER");
+              return done(null, false);
+            }
+            console.log("RETURNING NEW USER");
             return done(null, newUser)
           })
           // var newUser = new db.User();
