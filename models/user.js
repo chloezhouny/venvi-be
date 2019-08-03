@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     name: {
       type: DataTypes.STRING,
@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    username:{
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-      email: {
+    email: {
       type: DataTypes.STRING,
       // allowNull: false,
         // isEmail: true,
@@ -38,14 +38,14 @@ module.exports = function(sequelize, DataTypes) {
   timestamps: false
 });
 
-   User.associate = function(models) {
+  User.associate = function (models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
     User.hasMany(models.Listing, {
       onDelete: "cascade"
     });
 
-     User.hasMany(models.Bookmark, {
+    User.hasMany(models.Bookmark, {
       onDelete: "cascade"
     });
 
