@@ -1,42 +1,53 @@
-
-const express = require("express");
-
-const routes = require("./routes");
-
 //Initialize Express
+const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-var db = require("./models");
+// Defining middleware 
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
+var morgan = require('morgan');
+var passport = require('passport');
+var flash = require('connect-flash');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
+//Initialize passport.js from config
+require("./config/passport")(passport); // pass passport for configuration
+
+app.use(flash()); 
+app.use(morgan('dev')); 
+app.use(cookieParser()); 
 app.use(express.json());
+app.use(passport.session()); 
+app.use(passport.initialize());
+app.use(session({ secret: 'venividivenvi' }));
+app.use(express.urlencoded({ extended: true }));
 
-// Add routes, both API and view
+//Using CORS for heroku
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://venvi-be.herokuapp.com/');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
+
+//Send passport through express
+app.set('passport', passport);
+
+// Add all routes to be used
+const routes = require("./routes");
 app.use(routes);
 
-// app.get("/", function(req, res) {
-//   console.log("SERVER GET ROUTE HIT");
-//   res.json({status: true, message: "CLIENT GET RECEIVED"})
-// })
-
-// app.post("/", function(req, res) {
-//   console.log("RECEIVED CLIENT REQ.BODY: ", req.body);
-//   res.json({status: "ok", msg: "Got your post request"})
-// })
-
-// app.put("/:id", function(req, res) {
-//   console.log(req.params.id);
-//   res.json({status: "ok", msg: `Got your put request with id ${req.params.id}`})
-// })
-
-// app.delete("/:id", function(req, res) {
-//   console.log(req.params.id);
-//   res.json({status: "ok", msg: `Got your delete request with id ${req.params.id}`})
-// })
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+} else {
+  app.use(express.static("client/public"));
+}
 
 // Start the API server
+var db = require("./models");
 db.sequelize.sync().then(function() {
 	app.listen(PORT, function() {
 	  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
