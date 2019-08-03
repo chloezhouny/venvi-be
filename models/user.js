@@ -12,7 +12,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: [1],
-        isEmail: true 
       }
     },
     password: {
@@ -25,12 +24,16 @@ module.exports = function(sequelize, DataTypes) {
       email: {
       type: DataTypes.STRING,
       // allowNull: false,
-      validate: {
+        // isEmail: true,
+        validate: {
         len: [1]
       }
     },
-},
-   {
+    profileID: { //ID returned from google sign in
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  }, {
   freezeTableName: true, // Model tableName will be the same as the model name
   timestamps: false
 });
