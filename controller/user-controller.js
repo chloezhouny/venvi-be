@@ -25,7 +25,20 @@ module.exports = {
 			.catch(err => res.status(422).json(err));
 	},
 
+	profile: function(req, res) {
+		console.log("PROFILE ROUTE: ", req.user);
+		res.json(req.user);
+	},
+
+	logout: function(req, res) {
+		req.logout();
+		res.redirect("/");
+	},
+
+	redirectSuccess: function(req, res) {
+
+		console.log("SUCCESS ROUTE: ", req.user);
+		res.redirect("/")
+	}
+	
 }
-
-
-
