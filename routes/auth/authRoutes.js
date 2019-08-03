@@ -25,7 +25,6 @@
   //     failureRedirect: '/auth/google/profile', 
   //     failureFlash: 'Invalid login' 
   //   })
-
   // )
 
   router.route("/profile").get(isLoggedIn, authController.profile);
