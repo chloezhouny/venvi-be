@@ -1,6 +1,6 @@
-var db = require("../models");
 
 var db = require("../models");
+
 
 var uuid = require("uuid/v4");
 var AWS = require("aws-sdk");
@@ -43,19 +43,14 @@ function uploadImage(req, image, cb) {
 
 module.exports = {
 
-	findAll: function (req, res) {
+	getAllUsers: function (req, res) {
 
 		db.User.findAll({})
 			.then(dbUser => res.json(dbUser))
 			.catch(err => res.status(422).json(err));
 	},
 
-	getUser: function (req, res) {
 
-		db.User.findOne({ where: { id: req.params.id } })
-			.then(dbUser => res.json(dbUser))
-			.catch(err => res.status(422).json(err));
-	},
 
 	addUser: function (req, res) {
 
@@ -63,6 +58,13 @@ module.exports = {
 			.then(dbuser => {
 				res.json(dbuser);
 			})
+			.catch(err => res.status(422).json(err));
+	},
+
+		getUser: function (req, res) {
+
+		db.User.findOne({ where: { id: req.params.id } })
+			.then(dbUser => res.json(dbUser))
 			.catch(err => res.status(422).json(err));
 	},
 
@@ -100,9 +102,7 @@ module.exports = {
 					res.json({ imageUrl: location });
 				});
 		});
-	}
-
-}
+	},
 
 	profile: function(req, res) {
 		console.log("PROFILE ROUTE: ", req.user);
@@ -120,5 +120,9 @@ module.exports = {
 		console.log("SUCCESS ROUTE: ", req.user);
 		res.redirect("/")
 	}
-	
+
 }
+
+	
+	
+

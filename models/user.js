@@ -29,11 +29,24 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
+
     profileID: { //ID returned from google sign in
       type: DataTypes.STRING,
       allowNull: false
     }
   }, {
+
+
+     profilePhoto:{
+      type: DataTypes.STRING,
+      // allowNull: false,
+      validate: {
+        len: [1],
+      }
+    }
+},
+   {
+
   freezeTableName: true, // Model tableName will be the same as the model name
   timestamps: false
 });

@@ -18,8 +18,8 @@ app.use(flash());
 app.use(morgan('dev')); 
 app.use(cookieParser()); 
 app.use(express.json());
-app.use(passport.session()); 
 app.use(passport.initialize());
+app.use(passport.session()); 
 app.use(session({ secret: 'venividivenvi' }));
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,6 +31,9 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
+const fileUpload = require("express-fileupload");
+app.use(fileUpload());
 
 //Send passport through express
 app.set('passport', passport);
