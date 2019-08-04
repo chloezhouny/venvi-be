@@ -81,6 +81,17 @@ getAllListing: function (req, res) {
   },
 
 
+  deleteListing: function(req, res) {
+
+    db.Listing.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbListing) {
+      res.json(dbListing);
+    });
+},
+
 
 updatePhoto: function (req, res) {
 	

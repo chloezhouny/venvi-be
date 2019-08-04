@@ -18,7 +18,7 @@ router.route("/:id")
     .delete(listingController.deleteListing);
 
 
-// equivalent to "api/listings/profilePhoto"
+// equivalent to "api/listings/listingphoto"
 router.route("/listingphoto")
     .post(listingcontroller.updateListingPhoto);
 

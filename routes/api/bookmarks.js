@@ -8,7 +8,7 @@ const bookmarkcontroller = require("../../controller/bookmark-controller");
 router.route("/")
 
     .get(bookmarkcontroller.getAllbookmark)
-    .post(bookmarkcontroller.addbookmark);
+    .post(bookmarkcontroller.addBookmark);
 
 // equivalent to "api/users/:id"
 router.route("/:id")
