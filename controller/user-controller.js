@@ -67,6 +67,7 @@ module.exports = {
 	},
 
 
+
 	updatePhoto: function (req, res) {
 	
 		console.log(process.env.AWS_ACCESS_KEY_ID)
@@ -103,5 +104,21 @@ module.exports = {
 
 }
 
+	profile: function(req, res) {
+		console.log("PROFILE ROUTE: ", req.user);
+		res.json(req.user);
+	},
 
 
+	logout: function(req, res) {
+		req.logout();
+		res.redirect("/");
+	},
+
+	redirectSuccess: function(req, res) {
+
+		console.log("SUCCESS ROUTE: ", req.user);
+		res.redirect("/")
+	}
+	
+}
