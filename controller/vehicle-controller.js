@@ -1,5 +1,11 @@
+
+
+
+
 module.exports = {
   findAll: function(req, res) {
+
+    db.user.findAll({})
     console.log("RECEIVED CLIENT GET REQUEST");
     res.json({status: 200, message: "GET received"})
   },
