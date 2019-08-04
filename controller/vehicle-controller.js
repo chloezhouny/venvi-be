@@ -24,8 +24,4 @@ module.exports = {
     res.json({status: 200, msg: `Delete received. Id: ${req.params.id}`})
   },
 
-  default: function(req, res) {
-    const index = path.join(__dirname, 'build', 'index.html');
-    res.sendFile(index);
-  }
 }
