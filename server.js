@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 const express = require("express");
 
@@ -14,7 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Add routes, both API and view
+
 app.use(routes);
+
+
+const fileUpload = require("express-fileupload");
+app.use(fileUpload());
 
 // app.get("/", function(req, res) {
 //   console.log("SERVER GET ROUTE HIT");
