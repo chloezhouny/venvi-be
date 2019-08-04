@@ -11,14 +11,13 @@ module.exports = function(passport) {
 
   //Deserializing the user
   passport.deserializeUser(function(id, done) {
-    console.log("DESERIALIZEd USER ID: ", id);
-    db.User.findOne({ where: {id: id}}).then((user, err) => {
-      console.log("DESERIALIZEd USER: ", user);
-      
-      console.log("Function DONE: ", done);
-      done(err, user);
-    })
-  })
+    //console.log("DESERIALIZEd USER ID: ", id);
+    db.User.findOne({ where: {id: id}}).then((user) => {
+      if (user) done(null, user.get())
+      else done(user.errors, null);
+      // done(err, user)
+    });
+  });
 
   //Google Strategy
   passport.use(new GoogleStrategy({
@@ -26,40 +25,32 @@ module.exports = function(passport) {
     clientSecret: configAuth.googleAuth.clientSecret,
     callbackURL: configAuth.googleAuth.callbackURL
   }, function(token, refreshToken, profile, done) {
+      console.log("\n\n\nUSER's PROFILE", profile, "\n\n\n");
+    
     process.nextTick(function() {
-      console.log("USER's PROFILE ID", profile.id);
+      //console.log("USER's PROFILE ID", profile.id);
       
       db.User.findOne({ where: {profileID: profile.id}}).then((user, err) => {
         if (err) return done(err);
         
-        if (user) return done(null, user)
+        if (user) return done(null, false)
         else {
-          console.log("CREATING NEW USER: ", user);
+          //console.log("CREATING NEW USER: ", user);
           db.User.create({
-            name: "NewName",
-            username: "NewUsername",
-            password: "NoPassword",
-            email: "sr@gmail.com",
+            name: profile.name.givenName,
+            username: profile.displayName,
+            email: profile.emails[0].value,
+            photo: profile.photos[0].value,
             profileID: profile.id
-          }).then((newUser) => {
-            if (!newUser) {
-              console.log("RETURNING NULL USER");
-              return done(null, false);
-            }
-            console.log("RETURNING NEW USER");
-            return done(null, newUser)
           })
-          // var newUser = new db.User();
-
-          // newUser.google.id    = profile.id;
-          // newUser.google.token = token;
-          // newUser.google.name  = profile.displayName;
-          // newUser.google.email = profile.emails[0].value; // pull the first email
-
-          // newUser.save(function(err) {
-          //   if (err) throw err;
-          //   return done(null, newUser);
-          // });
+          .then((dbUser) => {
+              // send post back to render
+              return done(null, dbUser);
+          })
+          .catch((err) => {
+              // handle error;
+              console.log(err);
+          });
         }
       });
     });
