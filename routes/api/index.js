@@ -13,7 +13,7 @@ const bookmarkRoutes = require("./bookmarks");
 router.use("/test", testRoutes);
 
 router.use("/users", userRoutes);
-router.use("/vehicles", vehicleRoutes t);
+router.use("/vehicles", vehicleRoutes);
 router.use("/reviews", reviewRoutes);
 router.use("/listings", listingRoutes);
 router.use("/bookmarks", bookmarkRoutes);
