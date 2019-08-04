@@ -14,18 +14,18 @@ module.exports = function (sequelize, DataTypes) {
         len: [1],
       }
     },
-    password: {
+    email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
+      isEmail: true,
       validate: {
         len: [1]
       }
     },
-    email: {
+    profilePhoto: {
       type: DataTypes.STRING,
       // allowNull: false,
-        // isEmail: true,
-        validate: {
+      validate: {
         len: [1]
       }
     },
@@ -34,9 +34,9 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-  freezeTableName: true, // Model tableName will be the same as the model name
-  timestamps: false
-});
+      freezeTableName: true, // Model tableName will be the same as the model name
+      timestamps: false
+    });
 
   User.associate = function (models) {
     // Associating Author with Posts

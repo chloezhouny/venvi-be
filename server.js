@@ -12,16 +12,27 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
 //Initialize passport.js from config
-require("./config/passport")(passport); // pass passport for configuration
+require("./config/passport")(passport);
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(session({
+  key: 'user_sid',
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+      expires: 21600000, // 6 HRS
+      httpOnly: false
+  }
+}));
 
 app.use(flash()); 
 app.use(morgan('dev')); 
 app.use(cookieParser()); 
-app.use(express.json());
-app.use(passport.session()); 
 app.use(passport.initialize());
-app.use(session({ secret: 'venividivenvi' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(passport.session()); 
 
 //Using CORS for heroku
 app.use((req, res, next) => {
@@ -48,7 +59,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Start the API server
 var db = require("./models");
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force: true}).then(function() {
 	app.listen(PORT, function() {
 	  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 	});
