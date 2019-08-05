@@ -1,27 +1,47 @@
 
-
-
-
 module.exports = {
-  findAll: function(req, res) {
 
-    db.user.findAll({})
-    console.log("RECEIVED CLIENT GET REQUEST");
-    res.json({status: 200, message: "GET received"})
+
+
+getAllVehicles: function (req, res) {
+    db.Vehicle.findAll(
+      ).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
   },
-  create: function(req, res) {
-    console.log("RECEIVED CLIENT POST REQ.BODY: ", req.body);
-    res.json({status: 200, msg: "POST received", req: req.body})
+
+
+//send back the Vehicle id
+  addVehicle: function (req, res) {
+
+    console.log(req.body);
+
+    db.Vehicle.create(req.body
+      ).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
   },
-  
-  update: function(req, res) {
-    console.log("RECEIVED CLIENT PUT REQ.PARAMS: ", req.params);
-    res.json({status: 200, msg: `Put received. Id: ${req.params.id}`})
+
+
+  getVehicle: function (req, res) {
+    db.Vehicle.findAll({
+      where: {id: req.params.id}
+      }).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
   },
-  
-  remove: function(req, res) {
-    console.log("RECEIVED CLIENT DELETE REQ.PARAMS: ", req.params);
-    res.json({status: 200, msg: `Delete received. Id: ${req.params.id}`})
-  },
+
+
+  deleteVehicle: function(req, res) {
+
+    db.Vehicle.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
+}
 
 }
+

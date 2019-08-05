@@ -4,13 +4,13 @@ const bookmarkcontroller = require("../../controller/bookmark-controller");
 
 
 
-// equivalent to "api/users"
+// equivalent to "api/bookmarks"
 router.route("/")
 
     .get(bookmarkcontroller.getAllbookmark)
     .post(bookmarkcontroller.addBookmark);
 
-// equivalent to "api/users/:id"
+// equivalent to "api/bookmarks/:id"
 router.route("/:id")
 
     .get(bookmarkcontroller.getBookmark)

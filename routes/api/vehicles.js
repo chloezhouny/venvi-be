@@ -4,20 +4,18 @@ const vehiclecontroller = require("../../controller/vehicle-controller");
 
 
 
-// equivalent to "api/users"
+// equivalent to "api/vehicles"
 router.route("/")
 
     .get(vehiclecontroller.getAllVehicle)
-    .post(vehiclecontroller.addVehicle);
+    .post(vehiclecontroller.Vehicle);
 
-// equivalent to "api/users/:id"
+// equivalent to "api/vehicles/:id"
 router.route("/:id")
 
     .get(vehiclecontroller.getVehicle)
     .put(vehiclecontroller.editVehicle)
  
-
-
 
 module.exports = router;
 
