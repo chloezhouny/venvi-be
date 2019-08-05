@@ -24,19 +24,14 @@ module.exports = {
 
   
   getBookmarkByUser: function (req, res) {
-    db.Bookmark.findAll(
-      {
-        where: {
-          UserId: req.params.id
-        }
-      },
-      {
-        order:[['time', 'desc']],
-      },
-      include: [{
-        model: db.Listing
-      }]
-      ).then(function(dbBookmark) {
+    var query = {};
+    query['UserId'] = req.params.id;
+    db.Bookmark.findAll({
+       include: [{
+         model: db.Listing,
+         where: query
+        }]
+      }).then(function(dbBookmark) {
       res.json(dbBookmark);
     });
   },
