@@ -54,5 +54,6 @@ getAllbookmark: function (req, res) {
     });
 },
 
-
 }
+
+

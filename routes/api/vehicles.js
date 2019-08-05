@@ -15,6 +15,9 @@ router.route("/:id")
 
     .get(vehiclecontroller.getVehicle)
     .put(vehiclecontroller.updateVehicle)
+    .delete(vehicleController.deleteVehicle);
+
+    
  
 
 module.exports = router;
