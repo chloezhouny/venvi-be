@@ -1,12 +1,7 @@
 var db = require("../models");
-
-
-
-
 module.exports = {
 
-
-getAllbookmark: function (req, res) {
+  getAllbookmark: function (req, res) {
     db.Bookmark.findAll({
       order:[['time', 'desc']],
       limit:10}
@@ -26,8 +21,6 @@ getAllbookmark: function (req, res) {
       res.json(dbBookmark);
     });
   },
-
-
   
   getBookmark: function (req, res) {
     db.Bookmark.findAll(
@@ -44,7 +37,6 @@ getAllbookmark: function (req, res) {
   },
 
   deleteBookmark: function(req, res) {
-
     db.Bookmark.destroy({
       where: {
         id: req.params.id

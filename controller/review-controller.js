@@ -16,6 +16,17 @@ getAllReview: function (req, res) {
   },
 
 
+  
+getReviewById: function (req, res) {
+  // db.Review.findAll({
+  //   order:[['time', 'desc']],
+  //   limit:10}
+  //   ).then(function(dbReview) {
+  //   res.json(dbReview);
+  // });
+  res.json({ERROR: "To Do: Get one review by Id"})
+},
+
 
   addReview: function (req, res) {
 
