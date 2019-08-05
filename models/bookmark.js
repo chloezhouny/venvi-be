@@ -41,12 +41,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-     Bookmark.belongsTo(models.Listing, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-
   };
 
   return Bookmark;
