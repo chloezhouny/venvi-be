@@ -7,7 +7,7 @@ const vehiclecontroller = require("../../controller/vehicle-controller");
 // equivalent to "api/vehicles"
 router.route("/")
 
-    .get(vehiclecontroller.getAllVehicle)
+    .get(vehiclecontroller.getAllVehicles)
     .post(vehiclecontroller.addVehicle);
 
 // equivalent to "api/vehicles/:id"
@@ -15,7 +15,7 @@ router.route("/:id")
 
     .get(vehiclecontroller.getVehicle)
     .put(vehiclecontroller.updateVehicle)
-    .delete(vehicleController.deleteVehicle);
+    .delete(vehiclecontroller.deleteVehicle);
 
     
  

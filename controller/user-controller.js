@@ -10,9 +10,6 @@ var s3 = new AWS.S3({
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 })
 
-
-
-
 function uploadImage(req, image, cb) {
 	//use req from the post method, and the image data can be get using the code below
 
@@ -35,25 +32,16 @@ function uploadImage(req, image, cb) {
 			}
 		})
 	});
-
 };
 
-
-
-
 module.exports = {
-
 	getAllUsers: function (req, res) {
-
 		db.User.findAll({})
 			.then(dbUser => res.json(dbUser))
 			.catch(err => res.status(422).json(err));
 	},
 
-
-
 	addUser: function (req, res) {
-
 		db.User.create(req.body, { username: req.body.username })
 			.then(dbuser => {
 				res.json(dbuser);
@@ -61,17 +49,20 @@ module.exports = {
 			.catch(err => res.status(422).json(err));
 	},
 
-		getUser: function (req, res) {
-
+	getUser: function (req, res) {
 		db.User.findOne({ where: { id: req.params.id } })
 			.then(dbUser => res.json(dbUser))
 			.catch(err => res.status(422).json(err));
 	},
-
-
+	
+	editUser: function (req, res) {
+		// db.User.findOne({ where: { id: req.params.id } })
+		// 	.then(dbUser => res.json(dbUser))
+		// 	.catch(err => res.status(422).json(err));
+		res.json({ERROR: "To Do: make edit req to db"})
+	},
 
 	updateListingPhoto: function (req, res) {
-	
 		console.log(process.env.AWS_ACCESS_KEY_ID)
 		console.log(process.env.AWS_SECRET_ACCESS_KEY)
 		console.log(process.env.S3_BUCKET_NAME)
@@ -116,7 +107,6 @@ module.exports = {
 	},
 
 	redirectSuccess: function(req, res) {
-
 		console.log("SUCCESS ROUTE: ", req.user);
 		res.redirect("/")
 	}
