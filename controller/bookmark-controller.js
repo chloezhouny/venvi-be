@@ -3,21 +3,11 @@ module.exports = {
 
   getAllbookmark: function (req, res) {
     db.Bookmark.findAll({
-      order:[['time', 'desc']],
-      limit:10}
+      order:[['time', 'desc']]}
       ).then(function(dbBookmark) {
       res.json(dbBookmark);
     });
   },
-
-
-
-
-
-
-
-
-
 
 
 //send back the Bookmark id
@@ -30,16 +20,22 @@ module.exports = {
       res.json(dbBookmark);
     });
   },
+
+
   
-  getBookmark: function (req, res) {
+  getBookmarkByUser: function (req, res) {
     db.Bookmark.findAll(
       {
-        where: {UserId: req.params.id}
+        where: {
+          UserId: req.params.id
+        }
       },
       {
         order:[['time', 'desc']],
-        limit:10
-      }
+      },
+      include: [{
+        model: db.Listing
+      }]
       ).then(function(dbBookmark) {
       res.json(dbBookmark);
     });
@@ -48,8 +44,15 @@ module.exports = {
 
 
 
-
-
+   getBookmark: function (req, res) {
+    db.Bookmark.findOne(
+      {
+        where: {id: req.params.id}
+      }
+      ).then(function(dbBookmark) {
+      res.json(dbBookmark);
+    });
+  },
 
 
 

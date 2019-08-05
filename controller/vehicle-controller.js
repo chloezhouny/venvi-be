@@ -39,7 +39,7 @@ getAllVehicles: function (req, res) {
         rating: req.body.rating,
       },
       {
-        where: {id: req.params.VehicleId}
+        where: {id: req.params.id}
       })
     .then(function(dbVehicle)
     {
