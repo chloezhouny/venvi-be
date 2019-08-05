@@ -31,11 +31,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    Listing.belongsTo(models.Bookmark, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
+    Listing.hasOne(models.Bookmark, 
+      {
+        foreignKey: 'ListingId' 
+      });
   };
 
   return Listing;
