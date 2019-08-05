@@ -17,8 +17,8 @@ router.route("/:id")
     .put(usercontroller.editUser);
 
 
-// equivalent to "api/users/survey"
-router.route("/survey")
+// equivalent to "api/users/profilephoto"
+router.route("/profilephoto")
     .post(usercontroller.updatePhoto);
 
 

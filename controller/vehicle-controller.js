@@ -1,31 +1,63 @@
 
-
-
-
 module.exports = {
-  findAll: function(req, res) {
 
-    db.user.findAll({})
-    console.log("RECEIVED CLIENT GET REQUEST");
-    res.json({status: 200, message: "GET received"})
-  },
-  create: function(req, res) {
-    console.log("RECEIVED CLIENT POST REQ.BODY: ", req.body);
-    res.json({status: 200, msg: "POST received", req: req.body})
-  },
-  
-  update: function(req, res) {
-    console.log("RECEIVED CLIENT PUT REQ.PARAMS: ", req.params);
-    res.json({status: 200, msg: `Put received. Id: ${req.params.id}`})
-  },
-  
-  remove: function(req, res) {
-    console.log("RECEIVED CLIENT DELETE REQ.PARAMS: ", req.params);
-    res.json({status: 200, msg: `Delete received. Id: ${req.params.id}`})
+
+
+getAllVehicles: function (req, res) {
+    db.Vehicle.findAll(
+      ).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
   },
 
-  default: function(req, res) {
-    const index = path.join(__dirname, 'build', 'index.html');
-    res.sendFile(index);
-  }
+
+//send back the Vehicle id
+  addVehicle: function (req, res) {
+
+    console.log(req.body);
+
+    db.Vehicle.create(req.body
+      ).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
+  },
+
+
+  getVehicle: function (req, res) {
+    db.Vehicle.findAll({
+      where: {id: req.params.id}
+      }).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
+  },
+
+
+//Update average rating
+  updateVehicle: function (req, res) {
+    db.Vehicle.update(
+      {
+        rating: req.body.rating,
+      },
+      {
+        where: {id: req.params.VehicleId}
+      })
+    .then(function(dbVehicle)
+    {
+      res.json(dbVehicle);
+    });
+  },
+
+
+  deleteVehicle: function(req, res) {
+
+    db.Vehicle.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbVehicle) {
+      res.json(dbVehicle);
+    });
 }
+
+}
+

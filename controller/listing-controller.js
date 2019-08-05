@@ -10,7 +10,6 @@ var s3 = new AWS.S3({
 
 
 
-
 function uploadImage(req, image, cb) {
 	//use req from the post method, and the image data can be get using the code below
 
@@ -42,6 +41,58 @@ module.exports = {
 
 
 
+
+getAllListing: function (req, res) {
+    db.Listing.findAll({
+      order:[['time', 'desc']],
+      limit:10}
+      ).then(function(dbListing) {
+      res.json(dbListing);
+    });
+  },
+
+
+//send back the listing id
+  addListing: function (req, res) {
+
+    console.log(req.body);
+
+    db.Listing.create(req.body
+      ).then(function(dbListing) {
+      res.json(dbListing);
+    });
+  },
+
+
+  
+
+  getListing: function (req, res) {
+    db.Listing.findAll(
+      {
+        where: {UserId: req.params.id}
+      },
+      {
+        order:[['time', 'desc']],
+        limit:10
+      }
+      ).then(function(dbListing) {
+      res.json(dbListing);
+    });
+  },
+
+
+  deleteListing: function(req, res) {
+
+    db.Listing.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbListing) {
+      res.json(dbListing);
+    });
+},
+
+
 updatePhoto: function (req, res) {
 	
 		console.log(process.env.AWS_ACCESS_KEY_ID)
@@ -65,10 +116,10 @@ updatePhoto: function (req, res) {
 
 			db.Listing.update(
 				{
-					profilePhoto: location,
+					image: location,
 				},
 				{
-					where: { id: req.body.UserId }
+					where: { id: req.body.ListingId }
 				})
 				.then(function (dbUser) {
 					res.json({ imageUrl: location });
