@@ -52,7 +52,7 @@ getAllListing: function (req, res) {
 
 
 //for display listing by vehicle type(homepage)
-getAllListingByVehicle: function (req, res) {
+getListingByVehicle: function (req, res) {
     db.Listing.findAll(
     {
     	make: req.params.make,
@@ -157,7 +157,7 @@ updatePhoto: function (req, res) {
 					image: location,
 				},
 				{
-					where: { id: req.body.ListingId }
+					where: { id: req.params.ListingId }
 				})
 				.then(function (dbUser) {
 					res.json({ imageUrl: location });
