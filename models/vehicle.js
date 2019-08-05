@@ -48,6 +48,11 @@ module.exports = function(sequelize, DataTypes) {
     Vehicle.hasMany(models.Review, {
       onDelete: "cascade"
     });
+
+    // Vehicle.hasMany(models.Listing, {
+    //   onDelete: "cascade"
+    // });
+
   };
 
   return Vehicle;

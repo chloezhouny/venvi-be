@@ -11,6 +11,15 @@ module.exports = {
   },
 
 
+
+
+
+
+
+
+
+
+
 //send back the Bookmark id
   addBookmark: function (req, res) {
 
@@ -35,6 +44,15 @@ module.exports = {
       res.json(dbBookmark);
     });
   },
+
+
+
+
+
+
+
+
+
 
   deleteBookmark: function(req, res) {
     db.Bookmark.destroy({
