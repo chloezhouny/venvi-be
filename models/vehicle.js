@@ -29,6 +29,14 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
+
+     rating: {
+      type: DataTypes.Integer,
+      // allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
 },
    {
   freezeTableName: true,

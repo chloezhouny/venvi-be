@@ -32,6 +32,22 @@ getAllVehicles: function (req, res) {
   },
 
 
+//Update average rating
+  updateVehicle: function (req, res) {
+    db.Vehicle.update(
+      {
+        rating: req.body.rating,
+      },
+      {
+        where: {id: req.params.VehicleId}
+      })
+    .then(function(dbVehicle)
+    {
+      res.json(dbVehicle);
+    });
+  },
+
+
   deleteVehicle: function(req, res) {
 
     db.Vehicle.destroy({

@@ -11,7 +11,7 @@ router.route("/")
     .post(bookmarkcontroller.addBookmark);
 
 // equivalent to "api/bookmarks/:id"
-router.route("/:id")
+router.route("/:id"
 
     .get(bookmarkcontroller.getBookmark)
     .delete(bookmarkController.deleteBookmark);
