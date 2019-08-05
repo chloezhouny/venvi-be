@@ -87,7 +87,7 @@ module.exports = {
 					profilePhoto: location,
 				},
 				{
-					where: { id: req.body.UserId }
+					where: { id: req.params.id }
 				})
 				.then(function (dbUser) {
 					res.json({ imageUrl: location });

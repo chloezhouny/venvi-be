@@ -13,23 +13,20 @@ router.route("/:id")
     .delete(listingcontroller.deleteListing);
 
 
+// equivalent to "api/listings/listingphoto/:id"
+router.route("/listingphoto/:id")
+    .post(listingcontroller.updatePhoto);
 
-// equivalent to "api/listings/:userid"
-router.route("/:userid")
+
+// equivalent to "api/listings/user/:userid"
+router.route("/user/:userid")
     .get(listingcontroller.getListingByUser)
 
 
-
 // equivalent to "api/listings/:make/:model/:year"
-router.route("/:make/:model/:year")
-	.get(listingcontroller.getAllListingByVehicle)
+router.route("/vehicle/:make/:model/:year")
+	.get(listingcontroller.getListingByVehicle)
 
-
-
-
-// equivalent to "api/listings/listingphoto"
-router.route("/listingphoto")
-    .post(listingcontroller.updatePhoto);
 
 module.exports = router;
 

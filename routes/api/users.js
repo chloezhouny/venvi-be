@@ -16,13 +16,9 @@ router.route("/:id")
 
 
 // equivalent to "api/users/profilephoto"
-router.route("/profilephoto")
+router.route("/profilephoto/:id")
     .post(usercontroller.updateListingPhoto);
 
-
-
-// router.route("/email/:email")
-// 	.get(usercontroller.getUserEmail);
 
 
 module.exports = router;
