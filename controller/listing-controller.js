@@ -40,12 +40,49 @@ function uploadImage(req, image, cb) {
 module.exports = {
 
 
-
-
 getAllListing: function (req, res) {
     db.Listing.findAll({
       order:[['time', 'desc']],
       limit:10}
+      ).then(function(dbListing) {
+      res.json(dbListing);
+    });
+  },
+
+
+
+//for display listing by vehicle type(homepage)
+getAllListingByVehicle: function (req, res) {
+    db.Listing.findAll(
+    {
+    	make: req.params.make,
+        model: req.params.model,
+        year: req.params.year
+    },
+    {
+      order:[['time', 'desc']],
+      limit:10
+  	}
+      ).then(function(dbListing) {
+      res.json(dbListing);
+    });
+  },
+
+
+
+  
+//by userId
+  getListingByUser: function (req, res) {
+    db.Listing.findAll(
+      {
+        where: {
+        	UserId: req.params.userid, 
+        	
+        }
+      },
+      {
+        order:[['time', 'desc']]
+      }
       ).then(function(dbListing) {
       res.json(dbListing);
     });
@@ -64,21 +101,6 @@ getAllListing: function (req, res) {
   },
 
 
-  
-
-  getListing: function (req, res) {
-    db.Listing.findAll(
-      {
-        where: {UserId: req.params.id}
-      },
-      {
-        order:[['time', 'desc']],
-        limit:10
-      }
-      ).then(function(dbListing) {
-      res.json(dbListing);
-    });
-  },
 
 	
   editListing: function (req, res) {
@@ -93,7 +115,7 @@ getAllListing: function (req, res) {
     //   ).then(function(dbListing) {
     //   res.json(dbListing);
 		// });
-		res.json({ERROR : "To Do: Edit record by ID"})
+		// res.json({ERROR : "To Do: Edit record by ID"})
   },
 
 

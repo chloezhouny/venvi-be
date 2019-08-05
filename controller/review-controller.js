@@ -7,28 +7,18 @@ module.exports = {
 
 
 getAllReview: function (req, res) {
-    db.Review.findAll({
-      order:[['time', 'desc']],
-      limit:10}
+    db.Review.findAll(
+    {
+      order:[['time', 'desc']]
+    }
       ).then(function(dbReview) {
       res.json(dbReview);
     });
   },
 
 
-  
-getReviewById: function (req, res) {
-  // db.Review.findAll({
-  //   order:[['time', 'desc']],
-  //   limit:10}
-  //   ).then(function(dbReview) {
-  //   res.json(dbReview);
-  // });
-  res.json({ERROR: "To Do: Get one review by Id"})
-},
 
-
-  addReview: function (req, res) {
+ addReview: function (req, res) {
 
     console.log(req.body);
 
@@ -39,19 +29,21 @@ getReviewById: function (req, res) {
   },
 
 
-  //Get all reviews by vehicle id, and average out the ratings
-  getReviewByVehicle: function (req, res) {
-    db.Review.findAll(
+
+  
+getReviewById: function (req, res) {
+  db.Review.findAll(
       {
-        where: {VehicleId: req.params.Vehicleid}
+        where: {id: req.params.id}
       },
       {
-        order:[['time', 'desc']]
-      }
-      ).then(function(dbReview) {
-      res.json(dbReview);
-    });
-  },
+    order:[['time', 'desc']],
+    limit:10}
+    ).then(function(dbReview) {
+    res.json(dbReview);
+  });
+},
+
 
   deleteReview: function(req, res) {
 
@@ -63,6 +55,21 @@ getReviewById: function (req, res) {
       res.json(dbReview);
     });
 },
+
+
+  //Get all reviews by vehicle id, and average out the ratings
+  getReviewByVehicle: function (req, res) {
+    db.Review.findAll(
+      {
+        where: {VehicleId: req.params.id}
+      },
+      {
+        order:[['time', 'desc']]
+      }
+      ).then(function(dbReview) {
+      res.json(dbReview);
+    });
+  },
 
 }
 
