@@ -18,6 +18,13 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
+    vin: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        len: [4]
+      }
+    }, 
 
      image:{
       type: DataTypes.STRING,
@@ -25,7 +32,13 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1],
       }
-    }
+    },
+     time: {
+        type: 'TIMESTAMP',
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    },
+
 
   },
   {
@@ -40,9 +53,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-
-
-  
 
   };
 

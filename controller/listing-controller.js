@@ -91,6 +91,7 @@ getListingByVehicle: function (req, res) {
 
 //send back the listing id
   addListing: function (req, res) {
+    console.log("in controller listing");
 
     console.log(req.body);
 
