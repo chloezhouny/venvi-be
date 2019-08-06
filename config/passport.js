@@ -28,14 +28,10 @@ module.exports = function(passport) {
       console.log("\n\n\nUSER's PROFILE", profile, "\n\n\n");
     
     process.nextTick(function() {
-      //console.log("USER's PROFILE ID", profile.id);
-      
       db.User.findOne({ where: {profileID: profile.id}}).then((user, err) => {
         if (err) return done(err);
-        
         if (user) return done(null, false)
         else {
-          //console.log("CREATING NEW USER: ", user);
           db.User.create({
             name: profile.name.givenName,
             username: profile.displayName,
@@ -44,11 +40,9 @@ module.exports = function(passport) {
             profileID: profile.id
           })
           .then((dbUser) => {
-              // send post back to render
               return done(null, dbUser);
           })
           .catch((err) => {
-              // handle error;
               console.log(err);
           });
         }
