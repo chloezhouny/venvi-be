@@ -28,5 +28,10 @@ router.route("/vehicle/:make/:model/:year")
 	.get(listingcontroller.getListingByVehicle)
 
 
+// equivalent to "api/listings/createurl"
+router.route("/createurl")
+	.post(listingcontroller.updatePhoto)
+
+
 module.exports = router;
 
