@@ -11,9 +11,4 @@ router.route("/")
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
 
-router.route("*")
-  .get(function (req, res) {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  });
-
 module.exports = router;
