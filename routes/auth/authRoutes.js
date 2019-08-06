@@ -50,7 +50,7 @@ router.get(
     // console.log("REFERER: ", req.headers.referer) 
     // const redirect = req.session.oauth2return || '/auth/google/profile';
     // delete req.session.oauth2return;
-    let redirectURL =  `https://somedomain.com/user/${req.user.profileID}`;
+    let redirectURL =  `https://phillipchang.github.io/venvi-fe/receive/${req.user.profileID}/`;
     console.log("REQ USER AS A STRING: ", redirectURL) 
     res.redirect(redirectURL);
   }
