@@ -13,10 +13,28 @@ router.get("/",
   passport.authenticate('google', { scope: ["profile", "email"] })
 )
 
-//Once the user is verified, return to site
-router.route("/callback").get(passport.authenticate('google', { failureRedirect: '/', failureFlash: 'Invalid login' }), (res, req) => {
-  res.redirect("./works") //this should make client side redirect back to react app. But server should keep data gotten from google servers.
-})
+router.get(
+  // OAuth 2 callback url. Use this url to configure your OAuth client in the
+  // Google Developers console
+  '/callback',
+
+  // Finish OAuth 2 flow using Passport.js
+  passport.authenticate('google'),
+
+  // Redirect back to the original page, if any
+  (req, res) => {
+    console.log("ORIGINAL URL: ", req.originalUrl);
+    
+    const redirect = req.session.oauth2return || '/works';
+    delete req.session.oauth2return;
+    res.redirect(redirect);
+  }
+);
+
+// //Once the user is verified, return to site
+// router.route("/callback").get(passport.authenticate('google', { failureRedirect: '/', failureFlash: 'Invalid login' }), (res, req) => {
+//   res.redirect("./works") //this should make client side redirect back to react app. But server should keep data gotten from google servers.
+// })
 
 //Redirect the user to their profile page
 router.route("/profile").get(isLoggedIn, authController.profile);
