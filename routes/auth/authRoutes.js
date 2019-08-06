@@ -50,8 +50,10 @@ router.get(
     // console.log("REFERER: ", req.headers.referer) 
     // const redirect = req.session.oauth2return || '/auth/google/profile';
     // delete req.session.oauth2return;
-    let redirectURL =  `https://esarnb.github.io/venvi-fe/receive/${req.user.profileID}/`;
+    // let redirectURL =  `https://esarnb.github.io/venvi-fe/receive/${req.user.profileID}/`;
+    let redirectURL =  `https://PhillipChang.github.io/venvi-fe/receive/${req.user.profileID}/`;
     console.log("REQ USER AS A STRING: ", redirectURL) 
+    res.redirect(redirectURL);
   }
 );
 
