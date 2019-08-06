@@ -14,7 +14,9 @@ router.get("/",
 )
 
 //Once the user is verified, return to site
-router.route("/callback").get(passport.authenticate('google', { successRedirect: '/auth/google/profile', failureRedirect: '/', failureFlash: 'Invalid login' }))
+router.route("/callback").get(passport.authenticate('google', { failureRedirect: '/', failureFlash: 'Invalid login' }), (res, req) => {
+  res.redirect("/works") //this should make client side redirect back to react app. But server should keep data gotten from google servers.
+})
 
 //Redirect the user to their profile page
 router.route("/profile").get(isLoggedIn, authController.profile);
