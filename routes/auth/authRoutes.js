@@ -48,6 +48,7 @@ router.get(
   (req, res) => {
     // res.redirect(req.headers.referer);
     console.log("REFERER: ", req.headers.referer) 
+    console.log("REQ USER AS A STRING: ", `https://somedomain.com/user/${req.user.id}`) 
     const redirect = req.session.oauth2return || '/auth/google/profile';
     delete req.session.oauth2return;
     res.redirect(redirect);
