@@ -97,6 +97,8 @@ module.exports = {
 
 	profile: function(req, res) {
 		console.log("PROFILE ROUTE: ", req.user);
+		console.log("ORIGINALLINK ROUTE: ", req.originalUrl);
+		
 		res.json(req.user);
 	},
 

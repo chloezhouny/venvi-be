@@ -25,7 +25,7 @@ router.get(
   (req, res) => {
     console.log("ORIGINAL URL: ", req.originalUrl);
     
-    const redirect = req.session.oauth2return || '/works';
+    const redirect = req.session.oauth2return || '/auth/google/profile';
     delete req.session.oauth2return;
     res.redirect(redirect);
   }
