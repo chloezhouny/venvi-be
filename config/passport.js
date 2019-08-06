@@ -40,7 +40,7 @@ module.exports = function(passport) {
             profileID: profile.id
           })
           .then((dbUser) => {
-              return done(null, dbUser);
+            return done(null, dbUser);
           })
           .catch((err) => {
               console.log(err);

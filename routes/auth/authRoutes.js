@@ -9,9 +9,20 @@ router.route("/login").get( (req, res) => {
 })
 
 //Then the user redirects to youtube
-router.route("/").get(
+router.get("/",
   passport.authenticate('google', { scope: ["profile", "email"] })
 )
+
+
+router.get(
+  '/callback',
+  passport.authenticate('google', 'google', { successRedirect: '/auth/google/profile', failureRedirect: '/', failureFlash: 'Invalid login' }),
+  (req, res) => {
+    console.log("GOT REQ: ", req, "GOT RES: ",res);
+    
+    res.json(req.user)
+  }
+);
 
 //Once the user is verified, return to site
 router.route("/callback").get(passport.authenticate('google', { successRedirect: '/auth/google/profile', failureRedirect: '/', failureFlash: 'Invalid login' }))
