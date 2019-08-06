@@ -4,8 +4,19 @@
 //Initialize Express
 const express = require("express");
 const app = express();
+
+var host = process.env.HOST || '0.0.0.0';
+
 const PORT = process.env.PORT || 3001;
 
+var cors_proxy = require('cors-anywhere');
+cors_proxy.createServer({
+    originWhitelist: [], // Allow all origins
+    requireHeader: ['origin', 'x-requested-with'],
+    removeHeaders: ['cookie', 'cookie2']
+}).listen(PORT, host, function() {
+    console.log('Running CORS Anywhere on ' + host + ':' + PORT);
+});
 // Defining middleware 
 
 var morgan = require('morgan');
@@ -42,7 +53,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //Using CORS for heroku
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://venvi-be.herokuapp.com/');
+  // res.header('Access-Control-Allow-Origin', 'https://venvi-be.herokuapp.com/');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');

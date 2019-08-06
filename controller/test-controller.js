@@ -2,8 +2,8 @@
 
 module.exports = {
   findAll: function(req, res) {
-    console.log("RECEIVED CLIENT GET REQUEST");
-    res.json({status: 200, message: "GET received"})
+    console.log("RECEIVED CLIENT Chloe REQUEST");
+    res.json({status: 200, message: "GET chloe received"})
   },
   create: function(req, res) {
     console.log("RECEIVED CLIENT POST REQ.BODY: ", req.body);
@@ -18,5 +18,5 @@ module.exports = {
   remove: function(req, res) {
     console.log("RECEIVED CLIENT DELETE REQ.PARAMS: ", req.params);
     res.json({status: 200, msg: `Delete received. Id: ${req.params.id}`})
-  },
+  }
 }
