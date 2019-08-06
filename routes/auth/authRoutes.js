@@ -47,11 +47,12 @@ router.get(
   // Redirect back to the original page, if any
   (req, res) => {
     // res.redirect(req.headers.referer);
-    console.log("REFERER: ", req.headers.referer) 
-    console.log("REQ USER AS A STRING: ", `https://somedomain.com/user/${req.user.id}`) 
-    const redirect = req.session.oauth2return || '/auth/google/profile';
-    delete req.session.oauth2return;
-    res.redirect(redirect);
+    // console.log("REFERER: ", req.headers.referer) 
+    // const redirect = req.session.oauth2return || '/auth/google/profile';
+    // delete req.session.oauth2return;
+    let redirectURL =  `https://somedomain.com/user/${req.user.profileID}`;
+    console.log("REQ USER AS A STRING: ", redirectURL) 
+    res.redirect(redirectURL);
   }
 );
 
