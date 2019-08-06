@@ -1,5 +1,3 @@
-
-
 module.exports = {
   findAll: function(req, res) {
     console.log("RECEIVED CLIENT Chloe REQUEST");
