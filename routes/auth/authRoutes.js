@@ -17,11 +17,12 @@ router.get("/",
 router.get(
   '/callback',
   passport.authenticate('google', 'google', { successRedirect: '/auth/google/profile', failureRedirect: '/', failureFlash: 'Invalid login' }),
-  (req, res) => {
-    console.log("GOT REQ: ", req, "GOT RES: ",res);
+  (req, res, next)
+  //  => {
+  //   console.log("GOT REQ: ", req, "GOT RES: ",res);
     
-    res.json(req.user)
-  }
+  //   res.json(req.user)
+  // }
 );
 
 //Once the user is verified, return to site
