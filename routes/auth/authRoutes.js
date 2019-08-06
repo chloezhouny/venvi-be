@@ -2,6 +2,12 @@ var passport = require("passport");
 const router = require("express").Router();
 const authController = require("../../controller/user-controller");
 
+/**
+ * Set domain to redirect back to:
+ */
+
+ var redirectBackToClient = ""
+
 //First the button is hit to update passport
 router.route("/login").get( (req, res) => {
   passport = req.app.get('passport')
@@ -23,8 +29,8 @@ router.get(
 
   // Redirect back to the original page, if any
   (req, res) => {
-    console.log("ORIGINAL URL: ", req.originalUrl);
-    
+    // res.redirect(req.headers.referer);
+    console.log("REFERER: ", req.headers.referer) 
     const redirect = req.session.oauth2return || '/auth/google/profile';
     delete req.session.oauth2return;
     res.redirect(redirect);
