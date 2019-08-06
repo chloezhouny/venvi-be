@@ -1,5 +1,6 @@
 var db = require("../models");
 
+require('dotenv').config();
 var uuid = require("uuid/v4");
 var AWS = require("aws-sdk");
 var s3 = new AWS.S3({
@@ -133,6 +134,8 @@ getListingByVehicle: function (req, res) {
 
 
 updatePhoto: function (req, res) {
+
+  console.log("hitting controller listing updatephoto");
 	
 		console.log(process.env.AWS_ACCESS_KEY_ID)
 		console.log(process.env.AWS_SECRET_ACCESS_KEY)
@@ -151,20 +154,20 @@ updatePhoto: function (req, res) {
 		uploadImage(req, profilePhoto.image, function (location) {
 			console.log(location);
 			console.log('!!!!!!!!!!');
-			console.log(req);
+      console.log(req.body.currentListingId);
 
 			db.Listing.update(
 				{
 					image: location,
 				},
 				{
-					where: { id: req.params.ListingId }
+					where: { id: req.body.currentListingId }
 				})
 				.then(function (dbUser) {
 					res.json({ imageUrl: location });
 				});
 		});
+}
 	}
 
-}
 
