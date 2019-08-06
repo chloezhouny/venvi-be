@@ -8,7 +8,13 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-
+    vin: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
      image:{
       type: DataTypes.STRING,
       // allowNull: false,
@@ -37,7 +43,12 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [4]
       }
-    }  
+    },
+     time: {
+        type: 'TIMESTAMP',
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    },  
   },
   {
   freezeTableName: true, 
