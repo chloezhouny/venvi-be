@@ -51,8 +51,8 @@ router.get(
     // const redirect = req.session.oauth2return || '/auth/google/profile';
     // delete req.session.oauth2return;
     let redirectURL =  `https://phillipchang.github.io/venvi-fe/receive/${req.user.profileID}/`;
+    let redirectURL =  `http://localhost:3000/receive/${req.user.profileID}/`;
     console.log("REQ USER AS A STRING: ", redirectURL) 
-    res.redirect(redirectURL);
   }
 );
 
