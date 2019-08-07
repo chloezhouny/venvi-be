@@ -1,3 +1,4 @@
+var db = require("../models");
 
 module.exports = {
 
@@ -21,8 +22,7 @@ getVehicleByType: function (req, res) {
         model: req.params.model,
         year: req.params.year
       }
-    }
-      ).then(function(dbListing) {
+    }).then(function(dbVehicle) {
         console.log("in database");
       console.log(dbVehicle)
       res.json(dbVehicle);
@@ -35,6 +35,7 @@ getVehicleByType: function (req, res) {
   addVehicle: function (req, res) {
 
     console.log(req.body);
+    console.log("in controller", req);
 
     db.Vehicle.create(req.body
       ).then(function(dbVehicle) {
