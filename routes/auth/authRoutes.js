@@ -52,7 +52,7 @@ router.get('/check', (req, res)=> {
 // })
 
 //Once the user is verified, return to site
-router.route("/callback").get(passport.authenticate('google', { successRedirect: '/auth/google/check', failureRedirect: '/', failureFlash: 'Invalid login' }))
+router.route("/callback").get(passport.authenticate('google', { successRedirect: '/https://esarnb.github.io/venvi-fe/auth/google/check', failureRedirect: '/', failureFlash: 'Invalid login' }))
 
 // //Redirect the user to their profile page
 // router.route("/profile").get(isLoggedIn, authController.profile);
