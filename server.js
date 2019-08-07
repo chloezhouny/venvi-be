@@ -2,28 +2,17 @@
 var passport = require('passport');
 const express = require("express");
 const session = require('express-session');
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-// var cors_proxy = require('cors-anywhere');
-// cors_proxy.createServer({
-//     originWhitelist: [], // Allow all origins
-//     requireHeader: ['origin', 'x-requested-with'],
-//     removeHeaders: ['cookie', 'cookie2']
-// }).listen(PORT, host, function() {
-//     console.log('Running CORS Anywhere on ' + host + ':' + PORT);
-// });
-// Defining middleware 
 
 var morgan = require('morgan');
 
 //Initialize passport.js from config
 require("./config/passport")(passport);
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
+app.use(cookieParser())
 app.use(morgan('dev')); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -10,15 +10,20 @@ router.get("/", (req, res) => {
 
 //Once the user is verified, return to site
 router.get("/callback", (req, res) => {
-  console.log("CALLBACK REQ: ", req);
+  console.log("CALLBACK REQ: ", req.user);
   
-  passport.authenticate('google', { successRedirect: 'http://localhost:3000/venvi-fe/auth/google/success', failureRedirect: '/login' })(req, res)
+  res.cookie("userid1", req.user.id)
+  res.cookie("authenticated1", true);
+  passport.authenticate('google', { successRedirect: '/success', failureRedirect: '/login' })(req, res)
 })
 
 router.get("/success", (req, res) => {
   console.log("SUCCESS REQ: ", req);
   
-  res.json({logged: true});
+  res.cookie("userid2", req.user.id)
+  res.cookie("authenticated2", true);
+
+  // res.redirect("http://localhost:3000/venvi-fe")
 })
 
 router.get("/logout", (req, res) => {
