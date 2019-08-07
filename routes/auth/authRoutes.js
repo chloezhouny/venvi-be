@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 
 //Once the user is verified, return to site
 router.get("/callback", (req, res) => {
-  console.log("CALLBACK REQ: ", req.sessnion.user);
+  console.log("CALLBACK REQ: ", req.session.user);
   
   // res.cookie("userid1", req.user.id)
   // res.cookie("authenticated1", true);
