@@ -23,7 +23,7 @@ router.get("/success", (req, res) => {
   res.cookie("userid2", req.user.id)
   res.cookie("authenticated2", true);
 
-  // res.redirect("http://localhost:3000/venvi-fe")
+  res.redirect("http://localhost:3000/venvi-fe")
 })
 
 router.get("/logout", (req, res) => {
