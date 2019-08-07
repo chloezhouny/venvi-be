@@ -4,11 +4,13 @@ const authController = require("../../controller/user-controller");
 
 
 //Then the user redirects to youtube
-router.get("/login", (req, res, next) => {
-  passportAuthenticate("google-strategy", { scope: ["profile", "email"] })(req, res, next)
+router.get("/", (req, res, next) => {
+  passport = req.app.get("passport")
+  passport.authenticate("google", { scope: ["profile", "email"] })(req, res, next);
 })
 
 passportAuthenticate = (googleStrategy, req, res, next) => {
+  passport = req.app.get("passport")
   passport.authenticate(googleStrategy, (err, user, info) => {
     if (err) return next(err)
     if (!user) {
