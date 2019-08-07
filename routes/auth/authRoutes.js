@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 //Once the user is verified, return to site
 router.get("/callback", (req, res) => {
   // console.log("CALLBACK REQ AND RES: ", Object.keys(req), Object.keys(res));
-  console.log("CALLBACK SESSION PASS USER: ", req.session.passport.user);
+  // console.log("CALLBACK SESSION PASS USER: ", req.session.passport.user);
   console.log("CALLBACK REQ USER: ", req.user);
   
   // res.cookie("userid1", req.user.id)
