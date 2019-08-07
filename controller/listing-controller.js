@@ -109,18 +109,15 @@ getListingByVehicle: function (req, res) {
 
 	
   editListing: function (req, res) {
-    // db.Listing.findAll(
-    //   {
-    //     where: {UserId: req.params.id}
-    //   },
-    //   {
-    //     order:[['time', 'desc']],
-    //     limit:10
-    //   }
-    //   ).then(function(dbListing) {
-    //   res.json(dbListing);
-		// });
-		// res.json({ERROR : "To Do: Edit record by ID"})
+    db.Listing.update(
+      {
+        price: req.body.price
+      },
+      {
+        where: {id: req.params.id}
+      }).then(function(dbListing) {
+      res.json(dbListing);
+		});
   },
 
 
