@@ -12,8 +12,8 @@ router.get("/", (req, res) => {
 router.get("/callback", (req, res) => {
   console.log("CALLBACK REQ: ", req.user);
   
-  res.cookie("userid1", req.user.id)
-  res.cookie("authenticated1", true);
+  // res.cookie("userid1", req.user.id)
+  // res.cookie("authenticated1", true);
   passport.authenticate('google', { successRedirect: '/success', failureRedirect: '/login' })(req, res)
 })
 
