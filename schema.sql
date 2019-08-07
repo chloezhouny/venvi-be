@@ -1,10 +1,10 @@
 DROP DATABASE IF EXISTS venvi;
 CREATE DATABASE venvi;
 
-insert into venvi.User(name, username) values('alfred','alfred@gmail.com');
-insert into venvi.User(name, username) values('chloe','chloe@gmail.com');
-insert into venvi.User(name, username) values('esar','esar@gmail.com');
-insert into venvi.User(name, username) values('phillip','phillip@gmail.com');
+insert into venvi.User(name, username, profileID) values('alfred','alfred@gmail.com', 111);
+insert into venvi.User(name, username, profileID) values('chloe','chloe@gmail.com', 222);
+insert into venvi.User(name, username, profileID) values('esar','esar@gmail.com', 333);
+insert into venvi.User(name, username, profileID) values('phillip','phillip@gmail.com', 444);
 
 
 insert into venvi.Vehicle(make, model, year, rating, image) values("Jaguar", "XJ", "2018", 1, "https://c4d709dd302a2586107d-f8305d22c3db1fdd6f8607b49e47a10c.ssl.cf1.rackcdn.com/thumbnails/stock-images/90bde009b511661b40b6fd14da51e308.png");
@@ -26,13 +26,3 @@ insert into venvi.Listing(price, vin, UserId, make, model, year, image) values(1
 insert into venvi.Listing(price, vin, UserId, make, model, year, image) values(285000, "ZHWUD4ZF0JLA09084", 8, "Lamborghini", "Huracan", "2018", "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAyb1Qz.img?h=373&w=624&m=6&q=60&o=f&l=f");
 insert into venvi.Listing(price, vin, UserId, make, model, year, image) values(68888, "WBY2Z2C57FV391210", 9, "BMW", "I8", "2015", "https://www.cstatic-images.com/car-pictures/xl/usc50bmc681a021001.png");
 insert into venvi.Listing(price, vin, UserId, make, model, year, image) values(25730, "JM1NDAL74H0100591", 10, "Mazda", "MX 5", "2018", "https://www.mazdausa.com/siteassets/vehicles/2018/mx5-st/trims/gt/2018-Mazda-MX-5-Miata-grand-touring.png");
-
-
-
-
-
-
-
-
-
-

@@ -17,7 +17,9 @@ router.route("/:id")
     .put(vehiclecontroller.updateVehicle)
     .delete(vehiclecontroller.deleteVehicle);
 
-    
+// equivalent to "api/vehicles/vehicle/:make/:model/:year"
+router.route("/vehicle/:make/:model/:year")
+	.get(vehiclecontroller.getVehicleByType) 
  
 
 module.exports = router;
