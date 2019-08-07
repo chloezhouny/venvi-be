@@ -19,9 +19,9 @@ router.get("/success", (req, res) => {
 
   res.cookie("userid2", req.user.id, { path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false })
   res.cookie("authenticated2", true, { path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false });
-  
+
   // res.redirect("http://localhost:3000/venvi-fe")
-  res.json("WHERE DO I GO", req.user)
+  res.json({status: "okkkkkkkkkkkkkkk", msg: req.user})
 })
 
 router.get("/logout", (req, res) => {
