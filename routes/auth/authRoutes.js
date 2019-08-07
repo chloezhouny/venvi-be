@@ -26,7 +26,7 @@ router.get("/success", (req, res) => {
   res.header('Set-Cookie', `userid=${req.user.profileID}`)
   req.header('Set-Cookie', `userid=${req.user.profileID}`)
 
-  res.redirect("http://localhost:3000/venvi-fe/auth/google/success")
+  // res.redirect("http://localhost:3000/venvi-fe/auth/google/success")
   // res.json({status: "okkkkkkkkkkkkkkk", msg: req.user})
 })
 
