@@ -56,19 +56,22 @@ getAllListing: function (req, res) {
 getListingByVehicle: function (req, res) {
     db.Listing.findAll(
     {
-    	make: req.params.make,
+      where:{
+    	 make: req.params.make,
         model: req.params.model,
         year: req.params.year
+      }
     },
     {
       order:[['time', 'desc']],
       limit:10
   	}
       ).then(function(dbListing) {
+        console.log("in database");
+      console.log(dbListing)
       res.json(dbListing);
     });
   },
-
 
 
   
