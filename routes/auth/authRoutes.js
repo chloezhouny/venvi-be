@@ -20,8 +20,8 @@ router.get("/callback", (req, res) => {
 router.get("/success", (req, res) => {
   console.log("SUCCESS REQ: ", req.user.id);
   
-  res.cookie("userid2", req.user.id)
-  res.cookie("authenticated2", true);
+  res.cookie("userid2", req.user.id, { domain: domain, path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false })
+  res.cookie("authenticated2", true, { domain: domain, path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false });
 
   res.redirect("http://localhost:3000/venvi-fe")
 })
