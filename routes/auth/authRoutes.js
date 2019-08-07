@@ -16,7 +16,8 @@ router.get("/callback", (req, res) => {
 router.get("/success", (req, res) => {
   // console.log("SUCCESS SESSION PASS USER: ", req.session.passport.user);
   console.log("SUCCESS REQ USER: ", req.user);
-
+  console.log("REQUEST COOKIE: ", req.cookies);
+  
   res.cookie("userid2", req.user.id, { path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false })
   res.cookie("authenticated2", true, { path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false });
 
