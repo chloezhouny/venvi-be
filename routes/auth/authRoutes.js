@@ -2,11 +2,10 @@ var passport = require("passport");
 const router = require("express").Router();
 const authController = require("../../controller/user-controller");
 
-
 //Then the user redirects to youtube
 router.get("/", (req, res, next) => {
   passport = req.app.get("passport")
-  passport.authenticate("google", { scope: ["profile", "email"] })(req, res, next);
+  passportAuthenticate("googleStrat", { scope: ["profile", "email"] })(req, res, next);
 })
 
 passportAuthenticate = (googleStrategy, req, res, next) => {
@@ -54,6 +53,8 @@ router.get('/check', (req, res)=> {
 //Once the user is verified, return to site
 router.get("/callback", (req, res) => {
   passport.authenticate('google', {  failureRedirect: '/', failureFlash: 'Invalid login' }, () => {
+      console.log("RESPONSE CALLBACK", res);
+      
     res.redirect('https://esarnb.github.io/venvi-fe/')
   })(req, res)
 });
