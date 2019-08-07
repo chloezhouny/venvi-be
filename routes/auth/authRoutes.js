@@ -10,7 +10,11 @@ router.get("/", (req, res) => {
 
 //Once the user is verified, return to site
 router.get("/callback", (req, res) => {
-  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/login' })(req, res)
+  passport.authenticate('google', { successRedirect: 'http://localhost:3000/venvi-fe/auth/google/success', failureRedirect: '/login' })(req, res)
+})
+
+router.get("/success", (req, res) => {
+  res.json({logged: true});
 })
 
 router.get("/logout", (req, res) => {
