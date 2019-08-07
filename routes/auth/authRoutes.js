@@ -3,31 +3,15 @@ const router = require("express").Router();
 const authController = require("../../controller/user-controller");
 
 //Then the user redirects to youtube
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   // passport = req.app.get("passport")
-  passportAuthenticate("googleStrat", { scope: ["profile", "email"] })(req, res, next);
+  passport.authenticate("google", { scope: ["profile", "email"], display: "popup" })(req, res);
 })
 
-passportAuthenticate = (googleStrategy, req, res, next) => {
-  // passport = req.app.get("passport")
-  passport.authenticate(googleStrategy, (err, user, info) => {
-    if (err) return next(err)
-    if (!user) {
-      console.log("INFO ", info);
-      return res.send({success: false, message: info});
-    }
-    else {
-      req.login(user, logErr => {
-        if (logErr) return next(logErr);
-
-        res.cookie("userid", user.id)
-        res.cookie("authenticated", true);
-
-        return res.json({success: true});
-      })
-    }
-  })(req, res, next)
-}
+//Once the user is verified, return to site
+router.get("/callback", (req, res) => {
+  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/login' })(req, res)
+})
 
 router.get("/logout", (req, res) => {
   req.session.destroy((err) => {
@@ -44,33 +28,26 @@ router.get('/check', (req, res)=> {
   res.json(auth);
 });
 
-// //First the button is hit to update passport
-// router.route("/login").get( (req, res) => {
-//   passport = req.app.get('passport')
-//   res.redirect("/auth/google")
-// })
 
-//Once the user is verified, return to site
-router.get("/callback", (req, res) => {
-  passport.authenticate('google', {  failureRedirect: '/', failureFlash: 'Invalid login' }, () => {
-      console.log("RESPONSE CALLBACK", res);
-      
-    res.redirect('https://esarnb.github.io/venvi-fe/')
-  })(req, res)
-});
+// passportAuthenticate = (googleStrategy, req, res, next) => {
+//   // passport = req.app.get("passport")
+//   passport.authenticate(googleStrategy, (err, user, info) => {
+//     if (err) return next(err)
+//     if (!user) {
+//       console.log("INFO ", info);
+//       return res.send({success: false, message: info});
+//     }
+//     else {
+//       req.login(user, logErr => {
+//         if (logErr) return next(logErr);
 
-// //Redirect the user to their profile page
-// router.route("/profile").get(isLoggedIn, authController.profile);
+//         res.cookie("userid", user.id)
+//         res.cookie("authenticated", true);
 
-// //If the user hits log out btn, run logout
-// router.route("/logout").get(authController.logout);
-
-// //Check if the user is already logged in or not
-// function isLoggedIn(req, res, next) {
-//   // if user is authenticated in the session, carry on
-//   if (req.isAuthenticated()) return next();
-//   // if they aren't redirect them to home or signins
-//   res.redirect('/');
+//         return res.json({success: true});
+//       })
+//     }
+//   })(req, res, next)
 // }
 
 module.exports = router;

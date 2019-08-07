@@ -20,7 +20,7 @@ module.exports = function(passport) {
   });
 
   //Using Google Oauth2
-  passport.use("googleStrat", new GoogleStrategy({
+  passport.use( new GoogleStrategy({
     clientID: configAuth.googleAuth.clientID,
     clientSecret: configAuth.googleAuth.clientSecret,
     callbackURL: configAuth.googleAuth.callbackURL
