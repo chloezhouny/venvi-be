@@ -11,6 +11,26 @@ getAllVehicles: function (req, res) {
   },
 
 
+
+//check if there is a existing vehicle
+getVehicleByType: function (req, res) {
+    db.Vehicle.findAll(
+    {
+      where:{
+       make: req.params.make,
+        model: req.params.model,
+        year: req.params.year
+      }
+    }
+      ).then(function(dbListing) {
+        console.log("in database");
+      console.log(dbVehicle)
+      res.json(dbVehicle);
+    });
+  },
+
+
+
 //send back the Vehicle id
   addVehicle: function (req, res) {
 

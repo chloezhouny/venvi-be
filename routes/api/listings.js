@@ -23,7 +23,7 @@ router.route("/user/:userid")
     .get(listingcontroller.getListingByUser)
 
 
-// equivalent to "api/listings/:make/:model/:year"
+// equivalent to "api/listings/vehicle/:make/:model/:year"
 router.route("/vehicle/:make/:model/:year")
 	.get(listingcontroller.getListingByVehicle)
 
