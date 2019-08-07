@@ -25,7 +25,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
         expires: 21600000, // 6 hour limit
-        httpOnly: false
+        httpOnly: false,
+        domain:'esarnb.github.io/venvi-fe/'
     }
   })
 )
