@@ -82,7 +82,7 @@ app.use(fileUpload());
 const routes = require("./routes");
 app.use(routes);
 
-app.set("passport", passport)
+// app.set("passport", passport)
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
