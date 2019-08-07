@@ -18,7 +18,7 @@ router.get("/callback", (req, res) => {
 })
 
 router.get("/success", (req, res) => {
-  console.log("SUCCESS REQ: ", req);
+  console.log("SUCCESS REQ: ", req.user.id);
   
   res.cookie("userid2", req.user.id)
   res.cookie("authenticated2", true);
