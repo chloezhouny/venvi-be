@@ -59,9 +59,9 @@ app.use(passport.session());
 // Using CORS for heroku
 app.use((req, res, next) => {
   // res.header('Access-Control-Allow-Origin', 'https://venvi-be.herokuapp.com/');
-  // res.header('Access-Control-Allow-Origin', 'https://venvi-passport2.herokuapp.com/');
-  res.header("Access-Controller-Allow-Origin", "http://127.0.0.1:3001/")
-  // res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'https://venvi-passport2.herokuapp.com/');
+  // res.header("Access-Controller-Allow-Origin", "http://127.0.0.1:3001/")
+  // res.header('Access-Control-Allow-Origin', '127.0.0.1:3001');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 });
 // var cors = require("cors");
 // app.use(cors())
-// app.use(cors({credentials: true, origin: ["https://esarnb.github.io/venvi-fe/", "http://localhost:3001", "https://localhost:3001", "http://localhost:3001/", "https://localhost:3001/", "localhost:3001"]}));
+// app.use(cors({credentials: true, origin: "localhost:3001"}));
 
 
 const fileUpload = require("express-fileupload");
