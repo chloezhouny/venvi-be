@@ -19,23 +19,23 @@ module.exports = function(passport) {
     });
   });
 
-  //Google Strategy
-  passport.use(new GoogleStrategy({
+  //Using Google Oauth2
+  passport.use("google-strategy", new GoogleStrategy({
     clientID: configAuth.googleAuth.clientID,
     clientSecret: configAuth.googleAuth.clientSecret,
     callbackURL: configAuth.googleAuth.callbackURL
   }, function(token, refreshToken, profile, done) {
-      console.log("\n\n\nUSER's PROFILE", profile, "\n\n\n");
-    
-    process.nextTick(function() {
-      //console.log("USER's PROFILE ID", profile.id);
-      
-      db.User.findOne({ where: {profileID: profile.id}}).then((user, err) => {
+
+    process.nextTick(() => {
+      //Retrieve user after login
+      db.User.findOne({
+        where: {profileID: profile.id}
+      }).then((user, err) => {
         if (err) return done(err);
-        
-        if (user) return done(null, false)
+        else if (user) return done(null, user)
+
+        //Create user if new login
         else {
-          //console.log("CREATING NEW USER: ", user);
           db.User.create({
             name: profile.name.givenName,
             username: profile.displayName,
@@ -43,16 +43,11 @@ module.exports = function(passport) {
             photo: profile.photos[0].value,
             profileID: profile.id
           })
-          .then((dbUser) => {
-              // send post back to render
-              return done(null, dbUser);
-          })
-          .catch((err) => {
-              // handle error;
-              console.log(err);
-          });
+          .then((dbUser) => { done(null, dbUser) })
+          .catch((err) => { console.log(err) });
         }
-      });
-    });
-  }));
+
+      }).catch((err) => console.log(err));
+    })
+  }))
 }
