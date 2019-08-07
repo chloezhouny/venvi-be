@@ -5,7 +5,7 @@ const authController = require("../../controller/user-controller");
 
 //Then the user redirects to youtube
 router.get("/login", (req, res, next) => {
-  passportAuthenticate('google', { scope: ["profile", "email"] })
+  passportAuthenticate('google', { scope: ["profile", "email"] })(req, res, next)
 })
 
 passportAuthenticate = (googleStrategy, req, res, next) => {

@@ -67,8 +67,9 @@ app.use(passport.session());
   // next();
 // });
 var cors = require("cors");
+app.use(cors())
+// app.use(cors({credentials: true, origin: ["localhost:3000", 'localhost:3001', "venvi-passport2.herokuapp.com", "esarnb.github.io"]}));
 
-app.use(cors({credentials: true, origin: ['localhost:3001', "venvi-passport2.herokuapp.com", "esarnb.github.io"]}));
 
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
