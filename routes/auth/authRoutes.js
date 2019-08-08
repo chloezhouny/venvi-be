@@ -1,6 +1,15 @@
 var passport = require("passport");
 const router = require("express").Router();
-const authController = require("../../controller/user-controller");
+// const authController = require("../../controller/user-controller");
+
+serialize = function(obj) {
+  var str = [];
+  for (var p in obj)
+    if (obj.hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    }
+  return str.join("&");
+}
 
 //Then the user redirects to youtube
 router.get("/", (req, res) => {
@@ -19,28 +28,26 @@ router.get("/success", (req, res) => {
   console.log("SUCCESS REQ SESSION USER: ", req.session);
   
   if (req.user && req.user.profileID) {
-    res.cookie("userid", req.user.profileID, {domain: "esarnb.github.io"})
-    res.cookie("authenticated", true, {domain: "esarnb.github.io"});
+    let string = serialize(req.user);
+    res.redirect(`https://esarnb.github.io/venvi-fe/success/${string}`);  
+    // res.cookie("userid", req.user.profileID, {domain: "esarnb.github.io"})
+    // res.cookie("authenticated", true, {domain: "esarnb.github.io"});
   }
-  
-  setTimeout(() => {
-    res.redirect("https://esarnb.github.io/venvi-fe/authsuccess")  
-  }, 5000);
 })
 
-router.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) throw err;
-    req.logout();
-    res.clearCookie("userid");
-    res.clearCookie("user_sid");
-    res.json(req.isAuthenticated());
-  })
-})
+// router.get("/logout", (req, res) => {
+//   req.session.destroy((err) => {
+//     if (err) throw err;
+//     req.logout();
+//     res.clearCookie("userid");
+//     res.clearCookie("user_sid");
+//     res.json(req.isAuthenticated());
+//   })
+// })
 
-router.get('/check', (req, res)=> {
-  let auth = req.isAuthenticated();
-  res.json(auth);
-});
+// router.get('/check', (req, res)=> {
+//   let auth = req.isAuthenticated();
+//   res.json(auth);
+// });
 
 module.exports = router;
