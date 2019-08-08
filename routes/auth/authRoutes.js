@@ -19,14 +19,13 @@ router.get("/success", (req, res) => {
   console.log("SUCCESS REQ SESSION USER: ", req.session);
   
   if (req.user && req.user.profileID) {
-    
-    res.cookie("userid", req.user.profileID)
-    res.cookie("authenticated", true);
+    res.cookie("userid", req.user.profileID, {domain: "esarnb.github.io"})
+    res.cookie("authenticated", true, {domain: "esarnb.github.io"});
   }
   
   setTimeout(() => {
-    res.redirect("https://esarnb.github.io/venvi-fe/auth/google/success")  
-  }, 10000);
+    res.redirect("https://esarnb.github.io/venvi-fe/authsuccess")  
+  }, 5000);
 })
 
 router.get("/logout", (req, res) => {
