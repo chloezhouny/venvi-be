@@ -26,7 +26,7 @@ router.get("/success", (req, res) => {
   console.log("SUCCESS SESSION PASS USER: ", req.session.passport.user);
   console.log("SUCCESS REQ USER: ", req.user);
   console.log("SUCCESS REQ SESSION USER: ", req.session);
-  
+  //
   if (req.user && req.user.profileID) {
     let string = serialize(req.user);
     res.redirect(`https://esarnb.github.io/venvi-fe/success/${string}`);  
