@@ -16,10 +16,12 @@ router.get("/callback", (req, res) => {
 router.get("/success", (req, res) => {
   // console.log("SUCCESS SESSION PASS USER: ", req.session.passport.user);
   console.log("SUCCESS REQ USER: ", req.user);
-  console.log("REQUEST COOKIE: ", req.cookies);
+  // console.log("REQUEST COOKIE: ", req.cookies);
   
-  res.cookie("userid2", req.user.id, { domain: "esarnb.github.io", path: "/venvi-fe", expires: new Date(Date.now() + 9000000), httpOnly: false })
-  res.cookie("authenticated2", true, { domain: "esarnb.github.io", path: "/venvi-fe", expires: new Date(Date.now() + 9000000), httpOnly: false });
+  if (req.user && req.user.profileID) {
+    res.cookie("userid", req.user.profileID, { domain: "esarnb.github.io", path: "/venvi-fe", expires: new Date(Date.now() + 9000000), httpOnly: false })
+    res.cookie("authenticated", true, { domain: "esarnb.github.io", path: "/venvi-fe", expires: new Date(Date.now() + 9000000), httpOnly: false });
+  }
   
   
   // Set-Cookie: <cookie-name>=<cookie-value>
