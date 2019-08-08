@@ -19,8 +19,8 @@ router.get("/success", (req, res) => {
   console.log("SUCCESS REQ SESSION USER: ", req.session);
   
   if (req.user && req.user.profileID) {
-    res.cookie("userid", req.user.profileID, { domain: "esarnb.github.io", path: "/venvi-fe/auth/google/success", expires: new Date(Date.now() + 9000000), httpOnly: false })
-    res.cookie("authenticated", true, { domain: "esarnb.github.io", path: "/venvi-fe/auth/google/success", expires: new Date(Date.now() + 9000000), httpOnly: false });
+    res.cookie("userid", req.user.profileID, { domain: "esarnb.github.io", expires: new Date(Date.now() + 9000000), httpOnly: false })
+    res.cookie("authenticated", true, { domain: "esarnb.github.io", expires: new Date(Date.now() + 9000000), httpOnly: false });
   }
   
   setTimeout(() => {
