@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 
 //Once the user is verified, return to site
 router.get("/callback", (req, res) => {
-  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/login' })(req, res)
+  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/logged' })(req, res)
 })
 
 //Route auth/google/success
