@@ -19,6 +19,7 @@ router.get("/success", (req, res) => {
   console.log("SUCCESS REQ SESSION USER: ", req.session);
   
   if (req.user && req.user.profileID) {
+    
     res.cookie("userid", req.user.profileID)
     res.cookie("authenticated", true);
   }
