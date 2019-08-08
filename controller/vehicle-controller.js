@@ -6,6 +6,10 @@ module.exports = {
 
 getAllVehicles: function (req, res) {
     db.Vehicle.findAll(
+      {
+        order:[['rating', 'desc']],
+        limit:9
+      }
       ).then(function(dbVehicle) {
       res.json(dbVehicle);
     });
