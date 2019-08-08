@@ -14,8 +14,6 @@ insert into venvi.Vehicle(make, model, year, rating, image) values("Bentley", "C
 insert into venvi.Vehicle(make, model, year, rating, image) values("Mercedes-Benz", "S", "2018", 5, "https://st.motortrend.com/uploads/sites/10/2017/10/2018-mercedes-benz-s-class-450-sedan-angular-front.png");
 
 
-
-
 insert into venvi.Listing(price, vin, UserId, make, model, year, image) values(78000, "5YJSA1E23JF266704", 1, "Tesla", "Model S", "2018", "https://www.cstatic-images.com/car-pictures/xl/usc70tsc024b021001.png");
 insert into venvi.Listing(price, vin, UserId, make, model, year, image) values(22684, "JTHBE1BL9E5033613", 4, "Lexus", "GS", "2014", "https://www.cstatic-images.com/car-pictures/xl/cac30lec151a021001.png");
 insert into venvi.Listing(price, vin, UserId, make, model, year, image) values(52995, "WBS8M9C58G5E68439", 3, "BMW", "M3", "2016", "https://www.cstatic-images.com/car-pictures/xl/usc60bmc111a021001.png");
