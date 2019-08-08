@@ -30,7 +30,7 @@ router.get("/success", (req, res) => {
   //
   if (req.user && req.user.profileID) {
     let string = serialize(req.user);
-    res.redirect(`https://esarnb.github.io/venvi-fe/success`);  
+    res.redirect(`https://esarnb.github.io/venvi-fe/auth/google/success`);  
     // res.redirect(`https://esarnb.github.io/venvi-fe/success/${string}`);  
     // res.cookie("userid", req.user.profileID, {domain: "esarnb.github.io"})
     // res.cookie("authenticated", true, {domain: "esarnb.github.io"});
