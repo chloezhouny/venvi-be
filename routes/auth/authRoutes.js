@@ -18,8 +18,8 @@ router.get("/success", (req, res) => {
   console.log("SUCCESS REQ USER: ", req.user);
   console.log("REQUEST COOKIE: ", req.cookies);
   
-  res.cookie("userid2", req.user.id, { path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false })
-  res.cookie("authenticated2", true, { path: '/', expires: new Date(Date.now() + 9000000), httpOnly: false });
+  res.cookie("userid2", req.user.id, { domain: "esarnb.github.io", path: "/venvi-fe", expires: new Date(Date.now() + 9000000), httpOnly: false })
+  res.cookie("authenticated2", true, { domain: "esarnb.github.io", path: "/venvi-fe", expires: new Date(Date.now() + 9000000), httpOnly: false });
   
   
   // Set-Cookie: <cookie-name>=<cookie-value>
