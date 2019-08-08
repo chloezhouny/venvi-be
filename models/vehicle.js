@@ -15,8 +15,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
      year: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: "2019",
       validate: {
         len: [4]
       }
@@ -29,14 +30,14 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-
      rating: {
       type: DataTypes.INTEGER,
       // allowNull: false,
       validate: {
         len: [1]
       }
-    },
+    }
+
 },
    {
   freezeTableName: true,

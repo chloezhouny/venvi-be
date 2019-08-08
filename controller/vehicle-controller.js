@@ -15,7 +15,7 @@ getAllVehicles: function (req, res) {
 
 //check if there is a existing vehicle
 getVehicleByType: function (req, res) {
-    db.Vehicle.findAll(
+    db.Vehicle.findOne(
     {
       where:{
        make: req.params.make,
