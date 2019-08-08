@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
      rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       // allowNull: false,
       validate: {
         len: [1]
