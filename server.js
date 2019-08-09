@@ -60,9 +60,9 @@ app.use(fileUpload());
 const routes = require("./routes");
 app.use(routes);
 
-// Start the API server
+// Start the API server without reset
 var db = require("./models");
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync().then(function() {
 	app.listen(PORT, function() {
 	  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 	});

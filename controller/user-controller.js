@@ -42,7 +42,7 @@ module.exports = {
 	},
 
 	addUser: function (req, res) {
-		db.User.create(req.body, { username: req.body.username })
+		db.User.create(req.body)
 			.then(dbuser => {
 				res.json(dbuser);
 			})
@@ -54,6 +54,13 @@ module.exports = {
 			.then(dbUser => res.json(dbUser))
 			.catch(err => res.status(422).json(err));
 	},
+
+	getUserByProfileID: function (req, res) {
+		db.User.findOne({ where: { profileID: req.params.id } })
+			.then(dbUser => res.json(dbUser))
+			.catch(err => res.status(422).json(err));
+	},
+
 	
 	editUser: function (req, res) {
 		// db.User.findOne({ where: { id: req.params.id } })
