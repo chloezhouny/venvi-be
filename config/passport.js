@@ -33,7 +33,7 @@ module.exports = function(passport) {
       db.User.findOne({ where: {profileID: profile.id}}).then((user, err) => {
         if (err) return done(err);
         
-        if (user) return done(null, false)
+        if (user) return done(null, user)
         else {
           //console.log("CREATING NEW USER: ", user);
           db.User.create({
