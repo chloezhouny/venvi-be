@@ -14,6 +14,9 @@ router.route("/:id")
     .get(usercontroller.getUser)
     .put(usercontroller.editUser);
 
+// equivalent to "api/users/:id"
+router.route("/profile/:id")
+    .get(usercontroller.getUserByProfileID);
 
 // equivalent to "api/users/profilephoto"
 router.route("/profilephoto/:id")
