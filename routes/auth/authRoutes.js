@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 
 //Once the user is verified, return to site
 router.get("/callback", (req, res) => {
-  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/logged' })(req, res)
+  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/auth/google/success' })(req, res)
 })
 
 //Route auth/google/success
@@ -34,6 +34,9 @@ router.get("/success", (req, res) => {
     // res.redirect(`https://esarnb.github.io/venvi-fe/success/${obj2params}`);  
     // res.cookie("userid", req.user.profileID, {domain: "esarnb.github.io"})
     // res.cookie("authenticated", true, {domain: "esarnb.github.io"});
+  }
+  else {
+    res.redirect(`https://phillipchang.github.io/venvi-fe/`);  
   }
 })
 
