@@ -1,27 +1,17 @@
-
-
-
 //Initialize Express
 const express = require("express");
 const app = express();
-
-var host = process.env.HOST || '0.0.0.0';
-
 const PORT = process.env.PORT || 3001;
 
-var cors_proxy = require('cors-anywhere');
-cors_proxy.createServer({
-    originWhitelist: [], // Allow all origins
-    requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2']
-}).listen(PORT, host, function() {
-    console.log('Running CORS Anywhere on ' + host + ':' + PORT);
-});
-// Defining middleware 
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+} else {
+  app.use(express.static("client/public"));
+}
 
 var morgan = require('morgan');
 var passport = require('passport');
-var flash = require('connect-flash');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
@@ -42,14 +32,14 @@ app.use(session({
   }
 }));
 
-app.use(flash()); 
 app.use(morgan('dev')); 
-app.use(cookieParser()); 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser()); 
 app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(session({ secret: 'venividivenvi' }));
-app.use(express.urlencoded({ extended: true }));
 
 //Using CORS for heroku
 app.use((req, res, next) => {
@@ -65,18 +55,10 @@ const fileUpload = require("express-fileupload");
 app.use(fileUpload());
 
 //Send passport through express
-app.set('passport', passport);
 
 // Add all routes to be used
 const routes = require("./routes");
 app.use(routes);
-
-// Serve up static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-} else {
-  app.use(express.static("client/public"));
-}
 
 // Start the API server
 var db = require("./models");
