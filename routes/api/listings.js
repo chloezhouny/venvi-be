@@ -20,12 +20,12 @@ router.route("/listingphoto/:id")
 
 // equivalent to "api/listings/user/:userid"
 router.route("/user/:userid")
-    .get(listingcontroller.getListingByUser)
+    .get(listingcontroller.getListingByUser);
 
 
 // equivalent to "api/listings/vehicle/:make/:model/:year"
 router.route("/vehicle/:make/:model/:year")
-	.get(listingcontroller.getListingByVehicle)
+	.get(listingcontroller.getListingByVehicle);
 
 
 // equivalent to "api/listings/createurl"

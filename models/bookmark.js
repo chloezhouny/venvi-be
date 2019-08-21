@@ -2,15 +2,13 @@
 module.exports = function(sequelize, DataTypes) {
   var Bookmark = sequelize.define("Bookmark", {
 
-
-   sellerId:{
+  sellerId:{
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
-
   price:{
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -33,6 +31,29 @@ module.exports = function(sequelize, DataTypes) {
         len: [1],
       }
     },
+
+     make: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+      model: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+     year: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        len: [4]
+      }
+    },
+
      time: {
         type: 'TIMESTAMP',
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
