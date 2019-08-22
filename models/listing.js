@@ -21,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
         len: [1],
       }
     },
-
      location:{
       type: DataTypes.STRING,
       // allowNull: false,
@@ -29,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1],
       }
     },
-  price:{
+    price:{
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -73,7 +72,6 @@ module.exports = function(sequelize, DataTypes) {
     },
      mileage: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       validate: {
         len: [1]
       }
