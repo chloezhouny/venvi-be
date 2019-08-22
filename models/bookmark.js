@@ -1,21 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Bookmark = sequelize.define("Bookmark", {
-
-  sellerId:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-  price:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
     vin: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,44 +8,11 @@ module.exports = function(sequelize, DataTypes) {
         len: [4]
       }
     }, 
-
-     image:{
-      type: DataTypes.STRING,
-      // allowNull: false,
-      validate: {
-        len: [1],
-      }
-    },
-
-     make: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-      model: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-     year: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [4]
-      }
-    },
-
      time: {
         type: 'TIMESTAMP',
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
     },
-
-
   },
   {
   freezeTableName: true, 
@@ -75,6 +27,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
+     Bookmark.belongsTo(models.Listing, {
+      foreignKey: 'ListingId' 
+    });
   };
 
   return Bookmark;
