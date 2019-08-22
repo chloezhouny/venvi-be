@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     vin: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [4]
