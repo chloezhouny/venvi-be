@@ -8,7 +8,7 @@ router.route("/")
 
 
 // equivalent to "api/bookmarks/user/:id"
-router.route("user/:id")
+router.route("/user/:id")
     .get(bookmarkcontroller.getBookmarkByUser)
 
 

@@ -22,22 +22,35 @@ module.exports = {
   },
 
 
-  
-  getBookmarkByUser: function (req, res) {
-    var query = {};
-    query['UserId'] = req.params.id;
-    db.Bookmark.findAll({
-       include: [{
-         model: db.Listing,
-         where: query
-        }]
-      }).then(function(dbBookmark) {
+  // getBookmarkByUser: function (req, res) {
+  //   console.log("In bookmark controller")
+  //   var query = {};
+  //   query['UserId'] = req.params.id;
+  //   db.Bookmark.findAll({
+  //      include: [{
+  //        model: db.Listing,
+  //        where: query
+  //       }]
+  //     }).then(function(dbBookmark) {
+  //     res.json(dbBookmark);
+  //   });
+  // },
+
+   getBookmarkByUser: function (req, res) {
+    console.log("In bookmark controller");
+    db.Bookmark.findAll(
+      {
+        where: {
+          UserId: req.params.id,           
+        }
+      },
+      {
+        order:[['time', 'desc']]
+      }
+      ).then(function(dbBookmark) {
       res.json(dbBookmark);
     });
   },
-
-
-
 
    getBookmark: function (req, res) {
     db.Bookmark.findOne(
