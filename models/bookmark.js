@@ -75,6 +75,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
+     Bookmark.belongsTo(models.Listing, {
+      foreignKey: 'ListingId' 
+    });
   };
 
   return Bookmark;
