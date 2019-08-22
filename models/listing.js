@@ -1,28 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Listing = sequelize.define("Listing", {
-
-  price:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-    vin: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-     image:{
-      type: DataTypes.STRING,
-      // allowNull: false,
-      validate: {
-        len: [1],
-      }
-    },
-     location:{
+   sellerName:{
       type: DataTypes.STRING,
       // allowNull: false,
       validate: {
@@ -43,6 +21,35 @@ module.exports = function(sequelize, DataTypes) {
         len: [1],
       }
     },
+
+     location:{
+      type: DataTypes.STRING,
+      // allowNull: false,
+      validate: {
+        len: [1],
+      }
+    },
+  price:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    vin: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+     image:{
+      type: DataTypes.STRING,
+      // allowNull: false,
+      validate: {
+        len: [1],
+      }
+    }, 
      make: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -62,6 +69,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: [4]
+      }
+    },
+     mileage: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        len: [1]
       }
     },
      time: {
