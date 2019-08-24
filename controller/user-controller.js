@@ -63,10 +63,16 @@ module.exports = {
 
 	
 	editUser: function (req, res) {
-		// db.User.findOne({ where: { id: req.params.id } })
-		// 	.then(dbUser => res.json(dbUser))
-		// 	.catch(err => res.status(422).json(err));
-		res.json({ERROR: "To Do: make edit req to db"})
+		db.User.update(
+			{
+				phone: req.body.phone,
+				location: req.body.location,
+			},
+			{ 
+				where: { id: req.params.id } 
+			})
+			.then(dbUser => res.json(dbUser))
+			.catch(err => res.status(422).json(err));
 	},
 
 	updateListingPhoto: function (req, res) {

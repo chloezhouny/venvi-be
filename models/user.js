@@ -22,6 +22,22 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
+    location: {
+      type: DataTypes.STRING,
+      // allowNull: false,
+      isEmail: true,
+      validate: {
+        len: [1]
+      }
+    },
+     phone: {
+      type: DataTypes.STRING,
+      // allowNull: false,
+      isEmail: true,
+      validate: {
+        len: [1]
+      }
+    },
     profilePhoto: {
       type: DataTypes.STRING,
       // allowNull: false,
@@ -29,7 +45,6 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-
     profileID: { //ID returned from google sign in
       type: DataTypes.STRING,
       allowNull: false
