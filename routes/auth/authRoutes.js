@@ -36,7 +36,7 @@ router.get("/success", (req, res) => {
     // res.cookie("authenticated", true, {domain: "esarnb.github.io"});
   }
   else {
-    res.redirect(`https://phillipchang.github.io/venvi-fe/`);  
+    res.redirect(`https://phillipchang.github.io/venvi-fe/failed`);  
   }
 })
 
