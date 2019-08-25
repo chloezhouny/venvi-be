@@ -88,7 +88,10 @@ getListingByVehicle: function (req, res) {
         where: {
         	UserId: req.params.userid, 
         	
-        }
+        },
+        include: [{
+         model: db.User,
+        }]
       },
       {
         order:[['time', 'desc']]
