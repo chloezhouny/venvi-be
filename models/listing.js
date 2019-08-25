@@ -1,33 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
   var Listing = sequelize.define("Listing", {
-   sellerName:{
-      type: DataTypes.STRING,
-      // allowNull: false,
-      validate: {
-        len: [1],
-      }
-    },
-     phone:{
-      type: DataTypes.STRING,
-      // allowNull: false,
-      validate: {
-        len: [1],
-      }
-    },
-     email:{
-      type: DataTypes.STRING,
-      // allowNull: false,
-      validate: {
-        len: [1],
-      }
-    },
-     location:{
-      type: DataTypes.STRING,
-      // allowNull: false,
-      validate: {
-        len: [1],
-      }
-    },
     price:{
       type: DataTypes.INTEGER,
       allowNull: false,
