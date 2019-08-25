@@ -25,7 +25,7 @@ module.exports = function(passport) {
     clientSecret: configAuth.googleAuth.clientSecret,
     callbackURL: configAuth.googleAuth.callbackURL
   }, function(token, refreshToken, profile, done) {
-      console.log("\n\n\nUSER's PROFILE", profile, "\n\n\n");
+      console.log("\n\n\n\n\nUSER's PROFILE", profile, "\n\n\n\n\n");
     
     process.nextTick(function() {
       //console.log("USER's PROFILE ID", profile.id);

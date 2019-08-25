@@ -28,6 +28,8 @@ router.get("/success", (req, res) => {
   //
   if (req.user && req.user.profileID) {
     let obj2params = serialize(req.user);
+    console.log("\n\n\n\n\nOBJ PARAMS USER: ", obj2params, "\n\n\n\n\n");
+
     res.redirect(`https://phillipchang.github.io/venvi-fe/?${obj2params}`);  
     // res.redirect(`https://esarnb.github.io/venvi-fe/success/${obj2params}`);  
     // res.cookie("userid", req.user.profileID, {domain: "esarnb.github.io"})
