@@ -24,9 +24,7 @@ router.get("/callback", (req, res) => {
 
 //Route auth/google/success
 router.get("/success", (req, res) => {
-  console.log("SUCCESS SESSION PASS USER: ", req.session.passport.user);
-  console.log("SUCCESS REQ USER: ", req.user);
-  console.log("SUCCESS REQ SESSION USER: ", req.session);
+  console.log("\n\n\n\n\nSUCCESS REQ USER: ", req.user, "\n\n\n\n\n");
   //
   if (req.user && req.user.profileID) {
     let obj2params = serialize(req.user);
