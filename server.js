@@ -54,8 +54,6 @@ app.use((req, res, next) => {
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
 
-//Send passport through express
-
 // Add all routes to be used
 const routes = require("./routes");
 app.use(routes);
