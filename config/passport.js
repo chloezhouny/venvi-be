@@ -35,6 +35,8 @@ module.exports = function(passport) {
         
         if (user) return done(null, false)
         else {
+          console.log("\n\n\n\nHERE IS THE PROFILE URL: ", profile.photos[0].value, "\n\n\n\n");
+          
           //console.log("CREATING NEW USER: ", user);
           db.User.create({
             name: profile.name.givenName,
