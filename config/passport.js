@@ -42,7 +42,7 @@ module.exports = function(passport) {
             name: profile.name.givenName,
             username: profile.displayName,
             email: profile.emails[0].value,
-            photo: profile.photos[0].value,
+            profilePhoto: profile.photos[0].value,
             profileID: profile.id
           })
           .then((dbUser) => {
