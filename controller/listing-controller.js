@@ -44,7 +44,7 @@ module.exports = {
 getAllListing: function (req, res) {
     db.Listing.findAll({
       include: [{
-        model: db.User,
+        model:db.User,
       }],
       order:[['time', 'desc']],
       limit:10}
@@ -82,6 +82,9 @@ getListingByVehicle: function (req, res) {
   getListingByUser: function (req, res) {
     db.Listing.findAll(
       {
+        include: [{
+        model:db.User,
+      }],
         where: {
         	UserId: req.params.userid, 
         	
