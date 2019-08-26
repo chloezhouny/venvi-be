@@ -51,7 +51,9 @@ module.exports = {
 
 	getUser: function (req, res) {
 		db.User.findOne({ where: { id: req.params.id } })
-			.then(dbUser => res.json(dbUser))
+			.then(dbUser => {
+				console.log(dbUser);
+				res.json(dbUser)})
 			.catch(err => res.status(422).json(err));
 	},
 
