@@ -1,10 +1,10 @@
 DROP DATABASE IF EXISTS z1viz9l7u9ew8m7i;
 CREATE DATABASE z1viz9l7u9ew8m7i;
 
-insert into z1viz9l7u9ew8m7i.User(name, username, email, profileID) values('alfred','alfred@gmail.com', 'alfred@gmail.com', 111);
-insert into z1viz9l7u9ew8m7i.User(name, username, email, profileID) values('chloe','chloe@gmail.com', 'chloe@gmail.com', 222);
-insert into z1viz9l7u9ew8m7i.User(name, username, email, profileID) values('esar','esar@gmail.com', 'esar@gmail.com', 333);
-insert into z1viz9l7u9ew8m7i.User(name, username, email, profileID) values('phillip','phillip@gmail.com', 'phillip@gmail.com', 444);
+insert into z1viz9l7u9ew8m7i.User(name, username, email, phone, location,profileID) values('alfred','alfred@gmail.com','alfred@gmail.com', '111-1111-1111', 'San Jose', 111);
+insert into z1viz9l7u9ew8m7i.User(name, username, email, phone, location, profileID) values('chloe','chloe@gmail.com','chloe@gmail.com','222-2222-2222','San Francisco', 222);
+insert into z1viz9l7u9ew8m7i.User(name, username, email, phone, location, profileID) values('esar','esar@gmail.com','esar@gmail.com', '333-3333-3333', 'Ohio', 333);
+insert into z1viz9l7u9ew8m7i.User(name, username, email, phone, location, profileID) values('phillip','phillip@gmail.com', 'phillip@gmail.com', '444-4444-4444', 'Daly City', 444);
 
 
 insert into z1viz9l7u9ew8m7i.Vehicle(make, model, year, rating, image) values("Mercedes-Benz", "S", "2018", 5.0, "https://st.motortrend.com/uploads/sites/10/2017/10/2018-mercedes-benz-s-class-450-sedan-angular-front.png");
