@@ -23,7 +23,7 @@ module.exports = function(passport) {
     clientSecret: configAuth.googleAuth.clientSecret,
     callbackURL: configAuth.googleAuth.callbackURL
   }, function(token, refreshToken, profile, done) {
-     console.log("\n\n\n\n PROFILE: " , profile, "\n\n\n\n");
+     console.log("\n\n\n\n\n PROFILE: " , profile, "\n\n\n\n");
     //When the user signs in, check whether the sign in was successful, or if the user is in the db, else create the user
     process.nextTick(function() {
       db.User.findOne({ where: {profileID: profile.id}}).then((user, err) => {
