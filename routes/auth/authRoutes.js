@@ -21,11 +21,12 @@ router.get("/callback", (req, res) => {
   //At this point, the file "passport.js" gets called- ( -figuratively. Literally its stored in it's variable in server.js `require("./config/passport")(passport);` ) 
   // and google returns data to there, registers user (or returns failure) into the database, 
   // and comes back here to make a success or failure redirect below. On success, we start to make a param url for front-end cookies.
-  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/auth/google/success' })(req, res)
+  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/auth/google/failure' })(req, res)
 })
 
 //Route auth/google/success
 router.get("/success", (req, res) => {
+  console.log("\n\n\n\n REQ.USER: ", req.user, "\n\n\n\n");
   //If the user exists, redirect to the main site with user info to store as a cookie on the front - end and will pick user signed-in
   if (req.user && req.user.profileID) {
     let obj2params = serialize(req.user);
