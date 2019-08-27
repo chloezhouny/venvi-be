@@ -34,7 +34,7 @@ router.get("/success", (req, res) => {
   }
   //If the user DNE, redirect to home which will pick user signed-out
   else {
-    res.redirect(`https://phillipchang.github.io/venvi-fe/`);  
+    res.redirect(`https://phillipchang.github.io/venvi-fe/failure`);  
   }
 })
 
