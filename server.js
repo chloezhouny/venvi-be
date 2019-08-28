@@ -15,8 +15,8 @@ var passport = require('passport');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 //Initialize passport.js from config
 require("./config/passport")(passport);
@@ -33,8 +33,8 @@ app.use(session({
 }));
 
 app.use(morgan('dev')); 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser()); 
 app.use(passport.initialize());
