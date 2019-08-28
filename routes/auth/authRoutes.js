@@ -26,6 +26,7 @@ router.get("/callback", (req, res) => {
 
 //Route auth/google/success
 router.get("/success", (req, res) => {
+  console.log("\n\n\n\n REQ.USER: ", req.user, "\n\n\n\n");
   //If the user exists, redirect to the main site with user info to store as a cookie on the front - end and will pick user signed-in
   if (req.user && req.user.profileID) {
     let obj2params = serialize(req.user);
@@ -33,7 +34,7 @@ router.get("/success", (req, res) => {
   }
   //If the user DNE, redirect to home which will pick user signed-out
   else {
-    res.redirect(`https://phillipchang.github.io/venvi-fe/`);  
+    res.redirect(`https://phillipchang.github.io/venvi-fe/failure`);  
   }
 })
 

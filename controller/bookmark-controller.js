@@ -12,7 +12,7 @@ module.exports = {
 
 //send back the Bookmark id
   addBookmark: function (req, res) {
-    console.log("something")
+    console.log("alfredb0b")
     console.log(req.body);
 
     db.Bookmark.create(req.body
