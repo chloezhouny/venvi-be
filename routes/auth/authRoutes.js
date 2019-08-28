@@ -21,11 +21,22 @@ router.get("/callback", (req, res) => {
   //At this point, the file "passport.js" gets called- ( -figuratively. Literally its stored in it's variable in server.js `require("./config/passport")(passport);` ) 
   // and google returns data to there, registers user (or returns failure) into the database, 
   // and comes back here to make a success or failure redirect below. On success, we start to make a param url for front-end cookies.
-  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/auth/google/success' })(req, res)
+  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/auth/google/failed' })(req, res)
 })
 
 //Route auth/google/success
 router.get("/success", (req, res) => {
+  console.log("\n\n\n\n\nAUTH GOOGLE SUCCESS\n\n\n\n\n");  
+  redirectUser(req, res)
+})
+
+//Route auth/google/failed
+router.get("/failed", (req, res) => {
+  console.log("\n\n\n\n\nAUTH GOOGLE Failed\n\n\n\n\n");
+  redirectUser(req, res)
+})
+
+function redirectUser(req, res) {
   //If the user exists, redirect to the main site with user info to store as a cookie on the front - end and will pick user signed-in
   if (req.user && req.user.profileID) {
     let obj2params = serialize(req.user);
@@ -33,8 +44,8 @@ router.get("/success", (req, res) => {
   }
   //If the user DNE, redirect to home which will pick user signed-out
   else {
-    res.redirect(`https://phillipchang.github.io/venvi-fe/`);  
+    res.redirect(`https://phillipchang.github.io/venvi-fe/failed`);  
   }
-})
+}
 
 module.exports = router;
