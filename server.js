@@ -18,8 +18,11 @@ var cookieParser = require('cookie-parser');
 //Initialize passport.js from config
 require("./config/passport")(passport);
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// var bodyParser = require('body-parser');
+app.use(express.json()); // support json encoded bodies
+app.use(express.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(session({
   key: 'user_sid',
