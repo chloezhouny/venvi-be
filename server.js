@@ -43,13 +43,12 @@ app.use(passport.session());
 app.use(session({ secret: 'venividivenvi' }));
 
 //Using CORS for heroku
-app.use((req, res, next) => {
+app.use((req, res) => {
   // res.header('Access-Control-Allow-Origin', 'https://venvi-be.herokuapp.com/');
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  next();
 });
 
 const fileUpload = require("express-fileupload");
