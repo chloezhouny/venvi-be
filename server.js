@@ -18,9 +18,9 @@ var cookieParser = require('cookie-parser');
 //Initialize passport.js from config
 require("./config/passport")(passport);
 
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-//test
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 app.use(session({
   key: 'user_sid',
@@ -34,8 +34,8 @@ app.use(session({
 }));
 
 app.use(morgan('dev')); 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser()); 
 app.use(passport.initialize());
