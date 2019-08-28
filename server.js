@@ -15,12 +15,11 @@ var passport = require('passport');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //Initialize passport.js from config
 require("./config/passport")(passport);
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 
 app.use(session({
   key: 'user_sid',
@@ -43,12 +42,13 @@ app.use(passport.session());
 app.use(session({ secret: 'venividivenvi' }));
 
 //Using CORS for heroku
-app.use((req, res) => {
+app.use((req, res, next) => {
   // res.header('Access-Control-Allow-Origin', 'https://venvi-be.herokuapp.com/');
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
 });
 
 const fileUpload = require("express-fileupload");
