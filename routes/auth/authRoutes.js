@@ -12,16 +12,16 @@ serialize = function(obj) {
 }
 
 //Then the user redirects to youtube
-router.get("/", (req, res, next) => {
-  passport.authenticate("google", { scope: ["profile", "email"], display: "popup" })(req, res, next);
+router.get("/", (req, res) => {
+  passport.authenticate("google", { scope: ["profile", "email"], display: "popup" })(req, res);
 })
 
 //Once the user is verified, return to site
-router.get("/callback", (req, res,next) => {
+router.get("/callback", (req, res) => {
   //At this point, the file "passport.js" gets called- ( -figuratively. Literally its stored in it's variable in server.js `require("./config/passport")(passport);` ) 
   // and google returns data to there, registers user (or returns failure) into the database, 
   // and comes back here to make a success or failure redirect below. On success, we start to make a param url for front-end cookies.
-  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/auth/google/success' })(req, res, next)
+  passport.authenticate('google', { successRedirect: '/auth/google/success', failureRedirect: '/auth/google/success' })(req, res)
 })
 
 //Route auth/google/success
