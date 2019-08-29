@@ -59,6 +59,9 @@ getAllListing: function (req, res) {
 getListingByVehicle: function (req, res) {
     db.Listing.findAll(
     {
+      include: [{
+        model:db.User,
+      }],
       where:{
     	 make: req.params.make,
         model: req.params.model,
@@ -88,10 +91,7 @@ getListingByVehicle: function (req, res) {
         where: {
         	UserId: req.params.userid, 
         	
-        },
-        include: [{
-         model: db.User,
-        }]
+        }
       },
       {
         order:[['time', 'desc']]
