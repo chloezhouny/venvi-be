@@ -76,6 +76,16 @@ module.exports = {
     });
 },
 
+deleteBookmarkByListing: function(req, res) {
+    db.Bookmark.destroy({
+      where: {
+        ListingId: req.params.id
+      }
+    }).then(function(dbBookmark) {
+      res.json(dbBookmark);
+    });
+},
+
 }
 
 

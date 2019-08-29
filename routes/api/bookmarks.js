@@ -17,5 +17,9 @@ router.route("/:id")
     .get(bookmarkcontroller.getBookmark)
     .delete(bookmarkcontroller.deleteBookmark)
 
+// equivalent to "api/bookmarks/listing/:id"
+router.route("/listing/:id")
+  .delete(bookmarkcontroller.deleteBookmarkByListing)
+
     module.exports = router;
 
