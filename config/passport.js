@@ -28,7 +28,7 @@ module.exports = function(passport) {
     process.nextTick(function() {
       db.User.findOne({ where: {profileID: profile.id}}).then((user, err) => {
         if (err) return done(err);
-        if (user) return done(null, false)
+        if (user) return done(null, user)
         else {
           db.User.create({
             name: profile.name.givenName, //First Name
