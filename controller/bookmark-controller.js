@@ -77,6 +77,7 @@ module.exports = {
 },
 
 deleteBookmarkByListing: function(req, res) {
+    console.log("in bookmark/listing controller");
     db.Bookmark.destroy({
       where: {
         ListingId: req.params.id
